@@ -1,0 +1,8 @@
+Json Format :
+{
+    "title" : "Mangos",
+    "amount" : "450",
+    "category" : "Salary",
+    "description" : "My income",
+    "date" : "10-10-2023"
+}
