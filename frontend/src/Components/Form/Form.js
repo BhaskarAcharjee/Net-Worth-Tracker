@@ -59,7 +59,7 @@ function Form() {
             <div className="input-control">
                 <DatePicker 
                     id='date'
-                    placeholderText='Enter A Date'
+                    placeholderText='Enter the Date'
                     selected={date}
                     dateFormat="dd/MM/yyyy"
                     onChange={(date) => {
@@ -72,12 +72,13 @@ function Form() {
                     <option value=""  disabled >Select Option</option>
                     <option value="salary">Salary</option>
                     <option value="freelancing">Freelancing</option>
-                    <option value="investments">Investiments</option>
+                    <option value="investment">Investments</option>
                     <option value="stocks">Stocks</option>
-                    <option value="bitcoin">Bitcoin</option>
-                    <option value="bank">Bank Transfer</option>  
-                    <option value="youtube">Youtube</option>  
-                    <option value="other">Other</option>  
+                    <option value="bitcoin">Crypto</option>
+                    <option value="bank">Money Recieved</option>  
+                    <option value="cashback">Cashback</option>
+                    <option value="gift">Gift/Vouchers</option>  
+                    <option value="other">Uncategorized</option>  
                 </select>
             </div>
             <div className="input-control">

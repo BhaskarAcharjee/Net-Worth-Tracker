@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { dateFormat } from '../../utils/dateFormat';
-import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, yt } from '../../utils/Icons';
+import { bitcoin, book, calender, card, circle, clothing, comment, dollar, food, freelance, medical, money, piggy, stocks, takeaway, trash, tv, users, cashback, gift, recharge, transfer, travel, investment} from '../../utils/Icons';
 import Button from '../Button/Button';
 
 function IncomeItem({
@@ -21,17 +21,19 @@ function IncomeItem({
             case 'salary':
                 return money;
             case 'freelancing':
-                return freelance
-            case 'investments':
-                return stocks;
+                return freelance;
+            case 'investment':
+                return investment;
             case 'stocks':
-                return users;
+                return stocks;
             case 'bitcoin':
                 return bitcoin;
             case 'bank':
                 return card;
-            case 'youtube':
-                return yt;
+            case 'cashback':
+                return cashback;
+            case 'gift':
+                    return gift;
             case 'other':
                 return piggy;
             default:
@@ -47,6 +49,10 @@ function IncomeItem({
                 return food;
             case 'health':
                 return medical;
+            case 'recharge':
+                return recharge;
+            case 'transfer':
+                return transfer;
             case 'subscriptions':
                 return tv;
             case 'takeaways':
@@ -54,7 +60,7 @@ function IncomeItem({
             case 'clothing':
                 return clothing;
             case 'travelling':
-                return freelance;
+                return travel;
             case 'other':
                 return circle;
             default:
