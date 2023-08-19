@@ -1,14 +1,7 @@
-export const dashboard = <i className="fa-solid fa-chart-line"></i>
-export const transactions = <i className="fa-solid fa-credit-card"></i>
 export const categories = <i className="fa-solid fa-tags"></i>
 export const accounts = <i className="fa-solid fa-wallet"></i>
 export const settings = <i className="fa-solid fa-cog"></i>
 export const logout = <i className="fa-solid fa-sign-out"></i>
-export const incomes = <i className="fa-solid fa-coins"></i>
-export const expenses = <i className="fa-solid fa-money-bill-transfer"></i>
-export const assets = <i className="fa-solid fa-sack-dollar"></i>
-export const liabilities = <i className="fa-solid fa-hand-holding-dollar"></i>
-export const analytics = <i className="fa-solid fa-chart-pie"></i>
 export const card = <i className="fa-brands fa-cc-visa"></i>
 export const users = <i className="fa-solid fa-users-between-lines"></i>
 export const dollar = <i className="fa-solid fa-indian-rupee-sign"></i>
@@ -17,6 +10,16 @@ export const comment = <i className="fa-solid fa-comment"></i>
 export const plus = <i className="fa-solid fa-plus"></i>
 export const trash = <i className="fa-solid fa-trash"></i>
 export const signout = <i className="fa-solid fa-right-from-bracket"></i>
+
+// Menu Items
+export const dashboard = <i className="fa-solid fa-chart-line"></i>
+export const transactions = <i className="fa-solid fa-credit-card"></i>
+export const incomes = <i className="fa-solid fa-coins"></i>
+export const expenses = <i className="fa-solid fa-money-bill-transfer"></i>
+export const assets = <i className="fa-solid fa-sack-dollar"></i>
+export const liabilities = <i className="fa-solid fa-hand-holding-dollar"></i>
+export const debts = <i className="fa-solid fa-right-left"></i>
+export const analytics = <i className="fa-solid fa-chart-pie"></i>
 
 // Income Categories
 export const money = <i className="fa-solid fa-money-bill"></i>

@@ -6,9 +6,13 @@ import { menuItems } from '../../utils/menuItems'
 
 function Navigation({active, setActive}) {
     
+    const handleProfileClick = () => {
+      setActive(10); // Set the active menu item to trigger display of Profile (case:10 in App.js)
+    };
+    
     return (
         <NavStyled>
-            <div className="user-con">
+            <div className="user-con" onClick={handleProfileClick}>
                 <img src={avatar} alt="" />
                 <div className="text">
                     <h2>Bhaskar</h2>

@@ -1,4 +1,4 @@
-import {dashboard, expenses, transactions, incomes, assets, liabilities, investment, analytics} from '../utils/Icons'
+import {dashboard, expenses, transactions, incomes, assets, liabilities, investment, analytics, debts} from '../utils/Icons'
 
 export const menuItems = [
     {
@@ -33,7 +33,7 @@ export const menuItems = [
     },
     {
         id: 6,
-        title: "Investments & Trading",
+        title: "Investment & Trading",
         icon: investment,
         link: "/dashboard",
     },
@@ -45,6 +45,12 @@ export const menuItems = [
     },
     {
         id: 8,
+        title: "Debts & Lends",
+        icon: debts,
+        link: "/dashboard",
+    },
+    {
+        id: 9,
         title: "Analytics",
         icon: analytics,
         link: "/dashboard",

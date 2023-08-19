@@ -4,12 +4,17 @@ import bg from "./img/bg.png";
 import { MainLayout } from "./styles/Layouts";
 import Orb from "./Components/Orb/Orb";
 import Navigation from "./Components/Navigation/Navigation";
+import { useGlobalContext } from "./context/globalContext";
 import Dashboard from "./Components/Dashboard/Dashboard";
 import Analytics from "./Components/Dashboard/Analytics";
 import Transactions from "./Components/Transactions/Transactions";
 import Income from "./Components/Income/Income";
 import Expenses from "./Components/Expense/Expense";
-import { useGlobalContext } from "./context/globalContext";
+import Profile from "./Components/Settings/Profile";
+import Assets from "./Components/Assets/Assets";
+import Liabilities from "./Components/Liabilities/Liabilities";
+import InvestmentTrading from "./Components/Assets/InvestmentTrading";
+import DebtsLends from "./Components/Liabilities/DebtsLends";
 
 function App() {
   const [active, setActive] = useState(1);
@@ -28,13 +33,17 @@ function App() {
       case 4:
         return <Expenses />;
       case 5:
-        return <Transactions />;
+        return <Assets />;
       case 6:
-        return <Transactions />;
+        return <InvestmentTrading />;
       case 7:
-        return <Transactions />;
+        return <Liabilities />;
       case 8:
+        return <DebtsLends />;
+      case 9:
         return <Analytics />;
+      case 10:
+        return <Profile />;
       default:
         return <Dashboard />;
     }
