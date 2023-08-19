@@ -3,10 +3,15 @@
 [*] Expense & Income first 4 items show then show more transactions (clicking that will show others Tranactions)
 [*] In Transactions tab all transactions will show (with filter and search)
 [ ] Implement Edit option for transactions
+[ ] Added User Authentication & Login-Signup
+[ ] Setup Asset & Libilities frontend & Backend
+[ ] Create a actual dashboard of net worth (assets-liabilities) & savings (income-expense)
+[ ] Create a Invesment (Stock, Crypto, other invesment) tab
+[ ] Implement Profile Settings & Customizations
+[ ] Deploy in Production Server
 
 
-
-# Json Format :
+# Income-Expense Json Format :
 {
     "title" : "Mangos",
     "amount" : "450",

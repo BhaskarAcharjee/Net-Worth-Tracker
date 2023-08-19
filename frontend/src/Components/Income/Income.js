@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../../styles/Layouts";
 import { useGlobalContext } from "../../context/globalContext";
-import Form from "../Form/Form";
+import Form from "./IncomeForm";
 import Button from "../Button/Button";
 import IncomeItem from "../IncomeItem/IncomeItem";
 

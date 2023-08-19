@@ -27,7 +27,7 @@ ChartJs.register(
     ArcElement,
 )
 
-function Chart() {
+function IncomeVsExpenseChart() {
     const { incomes, expenses } = useGlobalContext();
 
     const data = {
@@ -112,4 +112,4 @@ const ChartStyled = styled.div`
   height: 100%;
 `;
 
-export default Chart;
+export default IncomeVsExpenseChart;

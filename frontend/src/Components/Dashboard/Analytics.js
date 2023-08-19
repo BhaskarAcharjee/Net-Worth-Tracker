@@ -6,7 +6,7 @@ import { InnerLayout } from "../../styles/Layouts";
 import { dollar } from "../../utils/Icons";
 import IncomeVsExpenseChart from "../Charts/IncomeVsExpenseChart";
 
-function Dashboard() {
+function Analytics() {
   const {
     totalExpenses,
     incomes,
@@ -23,10 +23,10 @@ function Dashboard() {
   }, []);
 
   return (
-    <DashboardStyled>
+    <AnalyticsStyled>
       <InnerLayout>
-        <h1>Dashboard</h1>
-        <div className="amount-con">
+        <h1>Analytics</h1>
+        {/* <div className="amount-con">
           <div className="income">
             <h2>Total Income</h2>
             <p>
@@ -45,12 +45,12 @@ function Dashboard() {
               {dollar} {totalBalance()}
             </p>
           </div>
-        </div>
+        </div> */}
         <div className="stats-con">
-          {/* <div className="chart-con">
+          <div className="chart-con">
             <IncomeVsExpenseChart />
-          </div> */}
-          <div className="history-con">
+          </div>
+          {/* <div className="history-con">
             <History />
             <h2 className="salary-title">
               Min <span>Salary</span>Max
@@ -66,15 +66,15 @@ function Dashboard() {
               <p>${Math.min(...expenses.map((item) => item.amount))}</p>
               <p>${Math.max(...expenses.map((item) => item.amount))}</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </InnerLayout>
-    </DashboardStyled>
+    </AnalyticsStyled>
   );
 }
 
-const DashboardStyled = styled.div`
-  .amount-con {
+const AnalyticsStyled = styled.div`
+  /* .amount-con {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -112,13 +112,13 @@ const DashboardStyled = styled.div`
         color: var(--color-delete);
       }
     }
-  }
+  } */
 
   .stats-con {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
-
+    
     .chart-con {
       grid-column: 1 / 4;
       height: 400px;
@@ -156,4 +156,4 @@ const DashboardStyled = styled.div`
   }
 `;
 
-export default Dashboard;
+export default Analytics;
