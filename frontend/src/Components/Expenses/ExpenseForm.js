@@ -94,7 +94,7 @@ function ExpenseForm() {
                 <textarea
                     name="description"
                     value={description}
-                    placeholder="Add A Reference"
+                    placeholder="Add a Reference"
                     id="description"
                     cols="30"
                     rows="4"
@@ -159,7 +159,7 @@ const ExpenseFormStyled = styled.form`
     button {
       box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
       &:hover {
-        background: var(--color-green) !important;
+        background: var(--color-delete) !important;
       }
     }
   }

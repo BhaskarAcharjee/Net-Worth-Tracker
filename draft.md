@@ -1,8 +1,8 @@
 
 # TO-DO :
-1. Expense & Income first 4 items show then show more transactions (clicking that will open Tranactions tab)
-2. In Transactions tab all transactions will show (with filter and search)
-3. Implement Edit option for transactions
+[ ] Expense & Income first 4 items show then show more transactions (clicking that will open Tranactions tab)
+[*] In Transactions tab all transactions will show (with filter and search)
+[ ] Implement Edit option for transactions
 
 
 

@@ -44,7 +44,9 @@ function Transactions() {
 
   function searchAndFilter(searchTerm, data) {
     return data.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.amount.toString().includes(searchTerm.toLowerCase())
     );
   }
 
