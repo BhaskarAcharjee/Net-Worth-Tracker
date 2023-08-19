@@ -110,7 +110,8 @@ const TransactionsStyled = styled.div`
   .transactions-content {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    margin-top : 1rem;
+    gap: 0.5rem;
   }
 
   .sorting {
@@ -123,9 +124,11 @@ const TransactionsStyled = styled.div`
   .sorting select,
   .sorting input {
     padding: 0.5rem;
-    border: 1px solid var(--color-gray-light);
     border-radius: 5px;
-    font-size: 0.9rem;
+    border: 2px solid #fff;
+    font-family: inherit;
+    font-size: inherit;
+    color: rgba(34, 34, 96, 0.9);
   }
 `;
 

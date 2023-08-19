@@ -62,6 +62,7 @@ function ExpenseForm() {
                     placeholderText="Enter the Date"
                     selected={date}
                     dateFormat="dd/MM/yyyy"
+                    className="custom-datepicker"
                     onChange={(date) => {
                         setInputState({ ...inputState, date: date });
                     }}
@@ -126,6 +127,7 @@ const ExpenseFormStyled = styled.form`
     font-size: inherit;
     outline: none;
     border: none;
+    width: 100%;
     padding: 0.5rem 1rem;
     border-radius: 5px;
     border: 2px solid #fff;
@@ -140,6 +142,9 @@ const ExpenseFormStyled = styled.form`
   .input-control {
     input {
       width: 100%;
+    }
+    .custom-datepicker {
+      width: 365px;
     }
   }
 

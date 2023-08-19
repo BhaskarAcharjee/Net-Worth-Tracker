@@ -8,7 +8,7 @@ import { plus } from '../../utils/Icons';
 
 
 function Form() {
-    const {addIncome, getIncomes, error, setError} = useGlobalContext()
+    const { addIncome, getIncomes, error, setError } = useGlobalContext()
     const [inputState, setInputState] = useState({
         title: '',
         amount: '',
@@ -17,10 +17,10 @@ function Form() {
         description: '',
     })
 
-    const { title, amount, date, category,description } = inputState;
+    const { title, amount, date, category, description } = inputState;
 
     const handleInput = name => e => {
-        setInputState({...inputState, [name]: e.target.value})
+        setInputState({ ...inputState, [name]: e.target.value })
         setError('')
     }
 
@@ -40,52 +40,53 @@ function Form() {
         <FormStyled onSubmit={handleSubmit}>
             {error && <p className='error'>{error}</p>}
             <div className="input-control">
-                <input 
-                    type="text" 
+                <input
+                    type="text"
                     value={title}
-                    name={'title'} 
+                    name={'title'}
                     placeholder="Salary Title"
                     onChange={handleInput('title')}
                 />
             </div>
             <div className="input-control">
-                <input value={amount}  
-                    type="text" 
-                    name={'amount'} 
+                <input value={amount}
+                    type="text"
+                    name={'amount'}
                     placeholder={'Salary Amount'}
-                    onChange={handleInput('amount')} 
+                    onChange={handleInput('amount')}
                 />
             </div>
             <div className="input-control">
-                <DatePicker 
+                <DatePicker
                     id='date'
                     placeholderText='Enter the Date'
                     selected={date}
                     dateFormat="dd/MM/yyyy"
+                    className="custom-datepicker"
                     onChange={(date) => {
-                        setInputState({...inputState, date: date})
+                        setInputState({ ...inputState, date: date })
                     }}
                 />
             </div>
             <div className="selects input-control">
                 <select required value={category} name="category" id="category" onChange={handleInput('category')}>
-                    <option value=""  disabled >Select Option</option>
+                    <option value="" disabled >Select Option</option>
                     <option value="salary">Salary</option>
                     <option value="freelancing">Freelancing</option>
                     <option value="investment">Investments</option>
                     <option value="stocks">Stocks</option>
                     <option value="bitcoin">Crypto</option>
-                    <option value="bank">Money Recieved</option>  
+                    <option value="bank">Money Recieved</option>
                     <option value="cashback">Cashback</option>
-                    <option value="gift">Gift/Vouchers</option>  
-                    <option value="other">Uncategorized</option>  
+                    <option value="gift">Gift/Vouchers</option>
+                    <option value="other">Uncategorized</option>
                 </select>
             </div>
             <div className="input-control">
                 <textarea name="description" value={description} placeholder='Add a Reference' id="description" cols="30" rows="4" onChange={handleInput('description')}></textarea>
             </div>
             <div className="submit-btn">
-                <Button 
+                <Button
                     name={'Add Income'}
                     icon={plus}
                     bPad={'.8rem 1.6rem'}
@@ -108,6 +109,7 @@ const FormStyled = styled.form`
         font-size: inherit;
         outline: none;
         border: none;
+        width: 100%;
         padding: .5rem 1rem;
         border-radius: 5px;
         border: 2px solid #fff;
@@ -122,6 +124,9 @@ const FormStyled = styled.form`
     .input-control{
         input{
             width: 100%;
+        }
+        .custom-datepicker {
+            width: 365px;
         }
     }
 
