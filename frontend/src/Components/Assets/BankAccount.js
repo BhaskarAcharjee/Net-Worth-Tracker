@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dollar, bank } from "../../utils/Icons";
 import Button from "../Button/Button";
@@ -7,7 +7,12 @@ import { useGlobalContext } from "../../context/globalContext";
 import BankAccountForm from "./BankAccountForm";
 
 function BankAccounts() {
-  const { bankaccoounts, getBankAccounts, deleteBankAccount} = useGlobalContext();
+  const {
+    bankaccoounts,
+    getBankAccounts,
+    deleteBankAccount,
+    totalBankAccount,
+  } = useGlobalContext();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
@@ -20,10 +25,13 @@ function BankAccounts() {
 
   const toggleForm = () => {
     setIsFormOpen(!isFormOpen);
-  }; 
+  };
 
   return (
     <BankAccountsStyled>
+      <h2 className="total-income">
+        Total Account Balance: <span>₹{totalBankAccount()}</span>
+      </h2>
       <div className="bank-account-list">
         {bankaccoounts.map((account) => (
           <div className="bank-account-item" key={account._id}>
@@ -72,19 +80,37 @@ function BankAccounts() {
         color="white"
         bRad="10px"
       />
-       {isFormOpen && <BankAccountForm toggleForm={toggleForm} />}
+      {isFormOpen && <BankAccountForm toggleForm={toggleForm} />}
     </BankAccountsStyled>
   );
 }
 
 const BankAccountsStyled = styled.div`
+  .total-income {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fcf6f9;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 0.2rem !important;
+    margin: 1rem 0;
+    font-size: 1.5rem !important;
+    gap: 0.5rem;
+    span {
+      font-size: 2rem !important;
+      font-weight: 800;
+      color: var(--color-green);
+    }
+  }
   .bank-account-list {
     /* Styling for the bank account list */
     .bank-account-item {
       display: flex;
       align-items: center;
       margin-bottom: 1.5rem;
-  
+
       .bank-icon {
         margin-right: 1rem;
         img {
@@ -92,33 +118,33 @@ const BankAccountsStyled = styled.div`
           height: 40px;
         }
       }
-  
+
       .bank-details {
         flex: 1;
-  
+
         h3 {
           font-size: 1.2rem;
           margin-bottom: 0.5rem;
         }
-  
+
         p {
           font-size: 0.9rem;
           color: rgba(34, 34, 96, 0.6);
           margin: 0.2rem 0;
         }
       }
-  
+
       .amount {
         display: flex;
         align-items: center;
         gap: 0.5rem;
-  
+
         .rupee-symbol {
           font-size: 1.2rem;
           color: var(--color-primary);
         }
       }
-  
+
       .amount {
         width: 10rem;
         margin-right: 1.5rem;
@@ -133,7 +159,7 @@ const BankAccountsStyled = styled.div`
           color: rgba(34, 34, 96, 0.9);
         }
       }
-  
+
       .buttons {
         margin-right: 0.5rem;
       }

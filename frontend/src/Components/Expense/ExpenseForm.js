@@ -7,113 +7,130 @@ import Button from "../Button/Button";
 import { plus } from "../../utils/Icons";
 
 function ExpenseForm() {
-    const { addExpense, error, setError } = useGlobalContext();
-    const [inputState, setInputState] = useState({
-        title: "",
-        amount: "",
-        date: "",
-        category: "",
-        description: "",
+  const { addExpense, error, setError } = useGlobalContext();
+  // Use a separate error state for the bank account form
+  const [ExpenseFormError, setExpenseFormError] = useState("");
+
+  const [inputState, setInputState] = useState({
+    title: "",
+    amount: "",
+    date: "",
+    category: "",
+    description: "",
+  });
+
+  const { title, amount, date, category, description } = inputState;
+
+  const handleInput = (input) => (e) => {
+    setInputState({ ...inputState, [input]: e.target.value });
+    setExpenseFormError(""); // Clear validation errors on input change
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Check for validation errors
+    if (!title || !amount || !category || !date) {
+      setExpenseFormError("Mandatory fields are required!"); // Show validation error
+      return; // Don't proceed with submission
+    }
+
+    // Check for valid amount
+    if (isNaN(amount) || parseFloat(amount) <= 0) {
+      setExpenseFormError("Amount must be a positive number!"); // Show validation error
+      return; // Don't proceed with submission
+    }
+
+    // If validation passes, add expense
+    addExpense(inputState);
+    setInputState({
+      title: "",
+      amount: "",
+      date: "",
+      category: "",
+      description: "",
     });
+  };
 
-    const { title, amount, date, category, description } = inputState;
-
-    const handleInput = (name) => (e) => {
-        setInputState({ ...inputState, [name]: e.target.value });
-        setError("");
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addExpense(inputState);
-        setInputState({
-            title: "",
-            amount: "",
-            date: "",
-            category: "",
-            description: "",
-        });
-    };
-
-    return (
-        <ExpenseFormStyled onSubmit={handleSubmit}>
-            {error && <p className="error">{error}</p>}
-            <div className="input-control">
-                <input
-                    type="text"
-                    value={title}
-                    name={"title"}
-                    placeholder="Expense Title"
-                    onChange={handleInput("title")}
-                />
-            </div>
-            <div className="input-control">
-                <input
-                    value={amount}
-                    type="text"
-                    name={"amount"}
-                    placeholder={"Expense Amount"}
-                    onChange={handleInput("amount")}
-                />
-            </div>
-            <div className="input-control">
-                <DatePicker
-                    id="date"
-                    placeholderText="Enter the Date"
-                    selected={date}
-                    dateFormat="dd/MM/yyyy"
-                    className="custom-datepicker"
-                    onChange={(date) => {
-                        setInputState({ ...inputState, date: date });
-                    }}
-                />
-            </div>
-            <div className="selects input-control">
-                <select
-                    required
-                    value={category}
-                    name="category"
-                    id="category"
-                    onChange={handleInput("category")}
-                >
-                    <option value="" disabled>
-                        Select Option
-                    </option>
-                    <option value="education">Education</option>
-                    <option value="groceries">Utilities & Groceries</option>
-                    <option value="health">Health & Fitness</option>
-                    <option value="recharge">Recharge & Bill Payments</option>
-                    <option value="transfer">Money Transfer</option>
-                    <option value="subscriptions">Entertainment & Subscriptions</option>
-                    <option value="takeaways">Food & Drink</option>
-                    <option value="clothing">Shopping</option>
-                    <option value="travelling">Travel & Transport</option>
-                    <option value="other">Uncategorized</option>
-                </select>
-            </div>
-            <div className="input-control">
-                <textarea
-                    name="description"
-                    value={description}
-                    placeholder="Add a Reference"
-                    id="description"
-                    cols="30"
-                    rows="4"
-                    onChange={handleInput("description")}
-                ></textarea>
-            </div>
-            <div className="submit-btn">
-                <Button
-                    name={"Add Expense"}
-                    icon={plus}
-                    bPad={".8rem 1.6rem"}
-                    bRad={"30px"}
-                    bg={"var(--color-accent"}
-                    color={"#fff"}
-                />
-            </div>
-        </ExpenseFormStyled>
-    );
+  return (
+    <ExpenseFormStyled onSubmit={handleSubmit}>
+      {ExpenseFormError && <p className="error">{ExpenseFormError}</p>}
+      <div className="input-control">
+        <input
+          type="text"
+          value={title}
+          name={"title"}
+          placeholder="Expense Title"
+          onChange={handleInput("title")}
+        />
+      </div>
+      <div className="input-control">
+        <input
+          value={amount}
+          type="text"
+          name={"amount"}
+          placeholder={"Expense Amount"}
+          onChange={handleInput("amount")}
+        />
+      </div>
+      <div className="input-control">
+        <DatePicker
+          id="date"
+          placeholderText="Enter the Date"
+          selected={date}
+          dateFormat="dd/MM/yyyy"
+          className="custom-datepicker"
+          onChange={(date) => {
+            setInputState({ ...inputState, date: date });
+          }}
+        />
+      </div>
+      <div className="selects input-control">
+        <select
+          required
+          value={category}
+          name="category"
+          id="category"
+          onChange={handleInput("category")}
+        >
+          <option value="" disabled>
+            Select Option
+          </option>
+          <option value="education">Education</option>
+          <option value="groceries">Utilities & Groceries</option>
+          <option value="health">Health & Fitness</option>
+          <option value="recharge">Recharge & Bill Payments</option>
+          <option value="transfer">Money Transfer</option>
+          <option value="subscriptions">Entertainment & Subscriptions</option>
+          <option value="takeaways">Food & Drink</option>
+          <option value="clothing">Shopping</option>
+          <option value="travelling">Travel & Transport</option>
+          <option value="other">Uncategorized</option>
+        </select>
+      </div>
+      <div className="input-control">
+        <textarea
+          name="description"
+          value={description}
+          placeholder="Add a Reference"
+          id="description"
+          cols="30"
+          rows="4"
+          onChange={handleInput("description")}
+        ></textarea>
+      </div>
+      <div className="submit-btn">
+        <Button
+          name={"Add Expense"}
+          icon={plus}
+          bPad={".8rem 1.6rem"}
+          bRad={"30px"}
+          bg={"var(--color-accent"}
+          color={"#fff"}
+        />
+      </div>
+    </ExpenseFormStyled>
+  );
 }
 
 const ExpenseFormStyled = styled.form`

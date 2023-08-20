@@ -13,15 +13,32 @@ function BankAccountForm({ toggleForm }) {
     ifsc: "",
   });
 
+  // Use a separate error state for the bank account form
+  const [BankAccountFormError, setBankAccountFormError] = useState("");
+
   const { name, amount, account, ifsc } = inputState;
 
-  const handleInput = (name) => (e) => {
-    setInputState({ ...inputState, [name]: e.target.value });
-    setError("");
+  const handleInput = (input) => (e) => {
+    setInputState({ ...inputState, [input]: e.target.value });
+    setBankAccountFormError(""); // Clear validation errors on input change
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Check for validation errors
+    if (!name || !amount) {
+      setBankAccountFormError("Mandatory fields are required!"); // Show validation error
+      return; // Don't proceed with submission
+    }
+
+    // Check for valid amount
+    if (isNaN(amount) || parseFloat(amount) <= 0) {
+      setBankAccountFormError("Amount must be a positive number!"); // Show validation error
+      return; // Don't proceed with submission
+    }
+
+    // If validation passes, add bank account
     addBankAccount(inputState);
     toggleForm(); // Close form after submit
     setInputState({
@@ -34,7 +51,7 @@ function BankAccountForm({ toggleForm }) {
 
   return (
     <FormStyled onSubmit={handleSubmit}>
-      {error && <p className="error">{error}</p>}
+      {BankAccountFormError && <p className="error">{BankAccountFormError}</p>}
       <div className="input-control">
         <input
           type="text"

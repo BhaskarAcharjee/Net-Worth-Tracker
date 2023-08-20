@@ -4,12 +4,16 @@ const { addIncome, getIncomes, deleteIncome } = require('../controllers/income')
 
 const router = require('express').Router();
 
-router.post('/add-income', addIncome)
+router
+    // Incomes
+    .post('/add-income', addIncome)
     .get('/get-incomes', getIncomes)
     .delete('/delete-income/:id', deleteIncome)
+    // Expenses
     .post('/add-expense', addExpense)
     .get('/get-expenses', getExpense)
     .delete('/delete-expense/:id', deleteExpense)
+    // bank Accounts
     .post('/add-bankaccount', addBankAccount)
     .get('/get-bankaccounts', getBankAccounts)
     .delete('/delete-bankaccount/:id', deleteBankAccount)

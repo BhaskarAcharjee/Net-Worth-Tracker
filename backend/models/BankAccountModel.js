@@ -41,4 +41,15 @@ const BankAccountSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+// Pre-save middleware to set default values for account and ifsc
+BankAccountSchema.pre("save", function (next) {
+  if (!this.account) {
+    this.account = "XXXXXXXX123"; // Set default account number
+  }
+  if (!this.ifsc) {
+    this.ifsc = "ABCD1234567"; // Set default IFSC code
+  }
+  next();
+});
+
 module.exports = mongoose.model("BankAccount", BankAccountSchema);

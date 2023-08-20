@@ -2,13 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../../styles/Layouts";
 import BankAccounts from "./BankAccount";
+import CashInventory from "./CashInventory";
+import { useGlobalContext } from "../../context/globalContext";
 
 function Assets() {
+  const { totalAssets } = useGlobalContext();
+
   return (
     <AssetsStyled>
       <InnerLayout>
         <h1>Assets</h1>
-        
+        <h2 className="total-income">
+          Total Assets: <span>₹{totalAssets()}</span>
+        </h2>
         {/* Bank Account Section */}
         <section className="asset-section">
           <h2>Bank Accounts</h2>
@@ -26,8 +32,23 @@ function Assets() {
 }
 
 const AssetsStyled = styled.div`
-  h1 {
-    margin-bottom: 1.5rem;
+  .total-income {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fcf6f9;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+    border-radius: 20px;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-size: 2rem;
+    gap: 0.5rem;
+    span {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--color-green);
+    }
   }
 
   .asset-section {
@@ -37,19 +58,6 @@ const AssetsStyled = styled.div`
       margin-bottom: 1rem;
     }
   }
-`;
-
-function CashInventory() {
-  return (
-    <CashInventoryStyled>
-      {/* Add cash inventory management content */}
-      {/* You can add forms, tables, etc. for cash inventory */}
-    </CashInventoryStyled>
-  );
-}
-
-const CashInventoryStyled = styled.div`
-  /* Add styling for the CashInventory component */
 `;
 
 export default Assets;

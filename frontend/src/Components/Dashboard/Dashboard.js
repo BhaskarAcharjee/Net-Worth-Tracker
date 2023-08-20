@@ -14,6 +14,8 @@ function Dashboard() {
     totalBalance,
     getIncomes,
     getExpenses,
+    totalAssets, 
+    totalNetWorth
   } = useGlobalContext();
 
   useEffect(() => {
@@ -25,6 +27,26 @@ function Dashboard() {
     <DashboardStyled>
       <InnerLayout>
         <h1>Dashboard</h1>
+        <div className="amount-con">
+          <div className="income">
+            <h2>Total Assets</h2>
+            <p>
+              {dollar} {totalAssets()}
+            </p>
+          </div>
+          <div className="expense">
+            <h2>Total Liabilities</h2>
+            <p>
+              {dollar} {totalExpenses()}
+            </p>
+          </div>
+          <div className="balance">
+            <h2>Net Worth</h2>
+            <p className={totalNetWorth() >= 0 ? "positive" : "negative"}>
+              {dollar} {totalNetWorth()}
+            </p>
+          </div>
+        </div>
         <div className="amount-con">
           <div className="income">
             <h2>Total Income</h2>

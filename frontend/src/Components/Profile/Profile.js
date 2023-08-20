@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import avatar from "../../img/avatar.png";
 import bhaskar from "../../img/bhaskar.jpeg";
+import { useGlobalContext } from "../../context/globalContext";
 
 function Profile() {
+  const { error, setError } = useGlobalContext(); // Test Purpose
+
   return (
     <ProfileStyled>
       <div className="avatar-con">
@@ -23,6 +26,7 @@ function Profile() {
           </div>
         </div>
       </div>
+      <p>Error Message : {error && <p className="error">{error}</p>}</p>
     </ProfileStyled>
   );
 }

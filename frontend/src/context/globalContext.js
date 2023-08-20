@@ -114,6 +114,14 @@ export const GlobalProvider = ({ children }) => {
     return totalBankAccount;
   };
 
+  const totalAssets = () => {
+    return totalBankAccount() + totalBalance();
+  };
+
+  const totalNetWorth = () => {
+    return totalAssets() - totalExpenses();
+  };
+
   // -------------------- Return GlobalContext --------------------
 
   return (
@@ -136,6 +144,8 @@ export const GlobalProvider = ({ children }) => {
         getBankAccounts,
         deleteBankAccount,
         totalBankAccount,
+        totalAssets,
+        totalNetWorth,
         error,
         setError,
       }}

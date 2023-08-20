@@ -10,6 +10,8 @@
 [ ] Implement Profile Settings & Customizations
 [ ] Deploy in Production Server
 
+# Issues:
+[ ] Handle Error message (backend error validations not showing)
 
 # Income-Expense Json Format :
 {
