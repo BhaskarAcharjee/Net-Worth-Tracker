@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../../styles/Layouts";
+import BankAccounts from "./BankAccount";
 
 function Assets() {
   return (
@@ -36,19 +37,6 @@ const AssetsStyled = styled.div`
       margin-bottom: 1rem;
     }
   }
-`;
-
-function BankAccounts() {
-  return (
-    <BankAccountsStyled>
-      {/* Add bank account management content */}
-      {/* You can add forms, tables, etc. for bank accounts */}
-    </BankAccountsStyled>
-  );
-}
-
-const BankAccountsStyled = styled.div`
-  /* Add styling for the BankAccounts component */
 `;
 
 function CashInventory() {

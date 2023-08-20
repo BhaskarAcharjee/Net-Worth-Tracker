@@ -10,11 +10,11 @@ import Analytics from "./Components/Dashboard/Analytics";
 import Transactions from "./Components/Transactions/Transactions";
 import Income from "./Components/Income/Income";
 import Expenses from "./Components/Expense/Expense";
-import Profile from "./Components/Settings/Profile";
+import Profile from "./Components/Profile/Profile";
 import Assets from "./Components/Assets/Assets";
 import Liabilities from "./Components/Liabilities/Liabilities";
-import InvestmentTrading from "./Components/Assets/InvestmentTrading";
-import DebtsLends from "./Components/Liabilities/DebtsLends";
+import InvestmentTrading from "./Components/Trading/InvestmentTrading";
+import DebtsLends from "./Components/DebtsLends/DebtsLends";
 
 function App() {
   const [active, setActive] = useState(1);

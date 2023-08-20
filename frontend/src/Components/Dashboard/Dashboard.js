@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
-import History from "../../History/History";
+import History from "../History/History";
 import { InnerLayout } from "../../styles/Layouts";
 import { dollar } from "../../utils/Icons";
-import IncomeVsExpenseChart from "../Charts/IncomeVsExpenseChart";
 
 function Dashboard() {
   const {
@@ -47,9 +46,6 @@ function Dashboard() {
           </div>
         </div>
         <div className="stats-con">
-          {/* <div className="chart-con">
-            <IncomeVsExpenseChart />
-          </div> */}
           <div className="history-con">
             <History />
             <h2 className="salary-title">
@@ -118,11 +114,6 @@ const DashboardStyled = styled.div`
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 2rem;
-
-    .chart-con {
-      grid-column: 1 / 4;
-      height: 400px;
-    }
 
     .history-con {
       grid-column: 4 / -1;
