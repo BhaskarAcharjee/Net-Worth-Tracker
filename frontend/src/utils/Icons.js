@@ -10,6 +10,7 @@ export const comment = <i className="fa-solid fa-comment"></i>
 export const plus = <i className="fa-solid fa-plus"></i>
 export const trash = <i className="fa-solid fa-trash"></i>
 export const signout = <i className="fa-solid fa-right-from-bracket"></i>
+export const bank = <i className="fa-solid fa-building-columns"></i>
 
 // Menu Items
 export const dashboard = <i className="fa-solid fa-chart-line"></i>
