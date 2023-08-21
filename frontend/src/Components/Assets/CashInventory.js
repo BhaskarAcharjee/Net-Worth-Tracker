@@ -9,11 +9,11 @@ import Rs100 from "../../img/Rs100.jpg";
 import Rs50 from "../../img/Rs50.jpg";
 import Rs20 from "../../img/Rs20.jpg";
 import Rs10 from "../../img/Rs10.jpg";
-import Rs5 from "../../img/Rs5.jpg"
+import Rs5 from "../../img/Rs5.jpg";
 
 function CashInventory() {
-  const { totalBankAccount, getDenominations, updateDenominations } =
-    useGlobalContext();
+  const { getDenominations, updateDenominations } = useGlobalContext();
+
   const [denominations, setDenominations] = useState({
     denomination2000: 0,
     denomination500: 0,
@@ -25,6 +25,10 @@ function CashInventory() {
     denomination5: 0,
   });
 
+  // Use a separate error & success state for the bank account form
+  const [DenominationsError, setDenominationsError] = useState("");
+  const [updateSuccess, setUpdateSuccess] = useState(false); // New state for success message
+
   useEffect(() => {
     getDenominations().then((data) => {
       setDenominations(data);
@@ -34,21 +38,35 @@ function CashInventory() {
   const handleDenominationChange = (denomination, value) => {
     setDenominations({
       ...denominations,
-      [denomination]: parseInt(value), // Convert the value to an integer
+      [denomination]: parseInt(value),
     });
+
+    setDenominationsError(""); // Clear validation errors on input change
+    setUpdateSuccess(false); // Clear success message on input change
   };
 
-  // const updateDenominationValues = async () => {
-  //   console.log("Updating denominations:", denominations); // Check the current state of denominations
-  //   try {
-  //     const response = await updateDenominations(denominations);
-  //     console.log("Update response:", response); // Log the response from the server
-  //   } catch (error) {
-  //     console.log("Update error:", error); // Log any error that occurs during the update
-  //   }
-  // };
   const updateDenominationValues = () => {
-    updateDenominations(denominations);
+    let isError = false;
+
+    // Check for negative values and non-number values
+    Object.keys(denominations).forEach((denomination) => {
+      const value = denominations[denomination];
+
+      if (value < 0) {
+        setDenominationsError("Negative values not allowed");
+        isError = true;
+      }
+    });
+
+    if (!isError) {
+      updateDenominations(denominations)
+        .then(() => {
+          setUpdateSuccess(true); // Set success message
+        })
+        .catch((error) => {
+          console.log("Update error:", error); // Handle error if necessary
+        });
+    }
   };
 
   const calculateTotal = () => {
@@ -75,6 +93,10 @@ function CashInventory() {
       <h2 className="total-income">
         Total Cash Balance: <span>₹{calculateTotal()}</span>
       </h2>
+      {DenominationsError && <p className="error">{DenominationsError}</p>}{" "}
+      {/* Error message */}
+      {updateSuccess && <p className="success">Update successful!</p>}{" "}
+      {/* Success message */}
       <DenominationContainer>
         {Object.keys(denominations).map(
           (denomination) =>
@@ -83,21 +105,21 @@ function CashInventory() {
               <DenominationItem key={denomination}>
                 <img
                   src={
-                    denomination == "denomination2000"
+                    denomination === "denomination2000"
                       ? Rs2000
-                      : denomination == "denomination500"
+                      : denomination === "denomination500"
                       ? Rs500
-                      : denomination == "denomination200"
+                      : denomination === "denomination200"
                       ? Rs200
-                      : denomination == "denomination100"
+                      : denomination === "denomination100"
                       ? Rs100
-                      : denomination == "denomination50"
+                      : denomination === "denomination50"
                       ? Rs50
-                      : denomination == "denomination20"
+                      : denomination === "denomination20"
                       ? Rs20
-                      : denomination == "denomination10"
+                      : denomination === "denomination10"
                       ? Rs10
-                      : denomination == "denomination5"
+                      : denomination === "denomination5"
                       ? Rs5
                       : ""
                   }
@@ -151,6 +173,9 @@ const CashInventoryStyled = styled.div`
   }
   Button {
     margin-top: 0.5rem;
+  }
+  .success{
+    color: var(--color-green);
   }
 `;
 
