@@ -1,18 +1,131 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { dollar, bank } from "../../utils/Icons";
-import Button from "../Button/Button";
 import { useGlobalContext } from "../../context/globalContext";
+import Button from "../Button/Button";
+import Rs2000 from "../../img/Rs2000.png";
+import Rs500 from "../../img/Rs500.jpg";
+import Rs200 from "../../img/Rs200.jpeg";
+import Rs100 from "../../img/Rs100.jpg";
+import Rs50 from "../../img/Rs50.jpg";
+import Rs20 from "../../img/Rs20.jpg";
+import Rs10 from "../../img/Rs10.jpg";
+import Rs5 from "../../img/Rs5.jpg"
 
 function CashInventory() {
-  const { totalBankAccount } = useGlobalContext();
+  const { totalBankAccount, getDenominations, updateDenominations } =
+    useGlobalContext();
+  const [denominations, setDenominations] = useState({
+    denomination2000: 0,
+    denomination500: 0,
+    denomination200: 0,
+    denomination100: 0,
+    denomination50: 0,
+    denomination20: 0,
+    denomination10: 0,
+    denomination5: 0,
+  });
+
+  useEffect(() => {
+    getDenominations().then((data) => {
+      setDenominations(data);
+    });
+  }, []);
+
+  const handleDenominationChange = (denomination, value) => {
+    setDenominations({
+      ...denominations,
+      [denomination]: parseInt(value), // Convert the value to an integer
+    });
+  };
+
+  // const updateDenominationValues = async () => {
+  //   console.log("Updating denominations:", denominations); // Check the current state of denominations
+  //   try {
+  //     const response = await updateDenominations(denominations);
+  //     console.log("Update response:", response); // Log the response from the server
+  //   } catch (error) {
+  //     console.log("Update error:", error); // Log any error that occurs during the update
+  //   }
+  // };
+  const updateDenominationValues = () => {
+    updateDenominations(denominations);
+  };
+
+  const calculateTotal = () => {
+    return Object.keys(denominations).reduce(
+      (total, denomination) =>
+        total +
+        (parseInt(denomination.slice(12)) || 0) *
+          parseInt(denominations[denomination]),
+      0
+    );
+  };
+
+  const calculateIndividualTotal = (denomination) => {
+    if (denominations[denomination] !== undefined) {
+      const denominationValue = denominations[denomination];
+      const noteValue = parseInt(denomination.slice(12)) || 0;
+      return denominationValue * noteValue;
+    }
+    return 0;
+  };
+
   return (
     <CashInventoryStyled>
       <h2 className="total-income">
-        Total Cash Balance: <span>₹{totalBankAccount()}</span>
+        Total Cash Balance: <span>₹{calculateTotal()}</span>
       </h2>
-      {/* Add cash inventory management content */}
-      {/* You can add forms, tables, etc. for cash inventory */}
+      <DenominationContainer>
+        {Object.keys(denominations).map(
+          (denomination) =>
+            // Show only keys starting with denomination
+            denomination.startsWith("denomination") && (
+              <DenominationItem key={denomination}>
+                <img
+                  src={
+                    denomination == "denomination2000"
+                      ? Rs2000
+                      : denomination == "denomination500"
+                      ? Rs500
+                      : denomination == "denomination200"
+                      ? Rs200
+                      : denomination == "denomination100"
+                      ? Rs100
+                      : denomination == "denomination50"
+                      ? Rs50
+                      : denomination == "denomination20"
+                      ? Rs20
+                      : denomination == "denomination10"
+                      ? Rs10
+                      : denomination == "denomination5"
+                      ? Rs5
+                      : ""
+                  }
+                  alt={`${denomination} Note`}
+                />
+                <div>
+                  <span>Rs. {denomination.slice(12)} Note</span>
+                  <input
+                    type="number"
+                    value={denominations[denomination]}
+                    onChange={(e) =>
+                      handleDenominationChange(denomination, e.target.value)
+                    }
+                  />
+                  <span>Total: ₹{calculateIndividualTotal()}</span>
+                </div>
+              </DenominationItem>
+            )
+        )}
+      </DenominationContainer>
+      <Button
+        name="Update"
+        onClick={updateDenominationValues}
+        bg="var(--color-green)"
+        bPad="0.5rem 1rem"
+        color="white"
+        bRad="10px"
+      />
     </CashInventoryStyled>
   );
 }
@@ -36,8 +149,51 @@ const CashInventoryStyled = styled.div`
       color: var(--color-green);
     }
   }
+  Button {
+    margin-top: 0.5rem;
+  }
+`;
 
-  /* Add styling for the CashInventory component */
+const DenominationContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+`;
+
+const DenominationItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #fcf6f9;
+  border: 2px solid #ffffff;
+  box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  padding: 1rem;
+  img {
+    width: 100px; /* Adjust image size as needed */
+    height: auto;
+  }
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  input {
+    font-family: inherit;
+    font-size: inherit;
+    width: 10rem;
+    padding: 0.5rem;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+    color: rgba(34, 34, 96, 0.9);
+  }
+  span {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: 600;
+  }
 `;
 
 export default CashInventory;

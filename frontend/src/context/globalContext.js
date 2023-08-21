@@ -9,6 +9,7 @@ export const GlobalProvider = ({ children }) => {
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [bankaccoounts, setBankAccounts] = useState([]);
+  const [denominations, setDenominations] = useState([]);
   const [error, setError] = useState(null);
 
   //-------------------- Incomes --------------------
@@ -115,12 +116,47 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const totalAssets = () => {
-    return totalBankAccount() + totalBalance();
+    return totalBankAccount() + totalCashInventory();
+  };
+
+  const totalCashInventory = () => {
+    return Object.keys(denominations).reduce(
+      (total, denomination) =>
+        total +
+        (parseInt(denomination.slice(12)) || 0) *
+          parseInt(denominations[denomination]),
+      0
+    );
   };
 
   const totalNetWorth = () => {
     return totalAssets() - totalExpenses();
   };
+
+  //-------------------- Cash Inventory Denominations --------------------
+  const getDenominations = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}get-cash-inventory`);
+      return response.data; // Return fetched denominations
+    } catch (error) {
+      setError(error.response.data.message);
+      return {}; // Return empty object in case of error
+    }
+  };
+
+  const updateDenominations = async (newDenominations) => {
+    try {
+      const response = await axios.post(`${BASE_URL}update-cash-inventory`, {
+        ...newDenominations, // Pass the entire updated denominations object
+      });
+      setDenominations(newDenominations); // Update the local state within the context provider
+      console.log("API Response:", response.data); // Log API response
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
+
 
   // -------------------- Return GlobalContext --------------------
 
@@ -146,6 +182,9 @@ export const GlobalProvider = ({ children }) => {
         totalBankAccount,
         totalAssets,
         totalNetWorth,
+        denominations,
+        getDenominations,
+        updateDenominations,
         error,
         setError,
       }}
