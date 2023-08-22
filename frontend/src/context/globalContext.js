@@ -101,6 +101,25 @@ export const GlobalProvider = ({ children }) => {
     console.log(response.data);
   };
 
+  const updateBankAccount = async (id, updatedBankAccount) => {
+    try {
+      const response = await axios.put(
+        `${BASE_URL}update-bankaccount/${id}`,
+        updatedBankAccount
+      );
+      const updatedAccounts = bankaccoounts.map((account) => {
+        if (account._id === id) {
+          return response.data.bankAccount;
+        }
+        return account;
+      });
+      setBankAccounts(updatedAccounts);
+      console.log("Update Response:", response.data);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
   const deleteBankAccount = async (id) => {
     const res = await axios.delete(`${BASE_URL}delete-bankaccount/${id}`);
     getBankAccounts();
@@ -115,28 +134,11 @@ export const GlobalProvider = ({ children }) => {
     return totalBankAccount;
   };
 
-  const totalAssets = () => {
-    return totalBankAccount() + totalCashInventory();
-  };
-
-  const totalCashInventory = () => {
-    return Object.keys(denominations).reduce(
-      (total, denomination) =>
-        total +
-        (parseInt(denomination.slice(12)) || 0) *
-          parseInt(denominations[denomination]),
-      0
-    );
-  };
-
-  const totalNetWorth = () => {
-    return totalAssets() - totalExpenses();
-  };
-
   //-------------------- Cash Inventory Denominations --------------------
   const getDenominations = async () => {
     try {
       const response = await axios.get(`${BASE_URL}get-cash-inventory`);
+      setDenominations(response.data);
       return response.data; // Return fetched denominations
     } catch (error) {
       setError(error.response.data.message);
@@ -156,7 +158,23 @@ export const GlobalProvider = ({ children }) => {
     }
   };
 
+  const totalCashInventory = () => {
+    return Object.keys(denominations).reduce(
+      (total, denomination) =>
+        total +
+        (parseInt(denomination.slice(12)) || 0) *
+          parseInt(denominations[denomination]),
+      0
+    );
+  };
 
+  const totalAssets = () => {
+    return totalBankAccount() + totalCashInventory();
+  };
+
+  const totalNetWorth = () => {
+    return totalAssets() - totalExpenses();
+  };
 
   // -------------------- Return GlobalContext --------------------
 
@@ -178,6 +196,7 @@ export const GlobalProvider = ({ children }) => {
         bankaccoounts,
         addBankAccount,
         getBankAccounts,
+        updateBankAccount,
         deleteBankAccount,
         totalBankAccount,
         totalAssets,

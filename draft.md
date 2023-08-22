@@ -7,11 +7,14 @@
 [ ] Create a Invesment (Stock, Crypto, other invesment) tab
 [ ] Implement Profile Settings & Customizations
 [ ] Deploy in Production Server
+[X] Implement Edit option for bank accounts
 [X] Expense & Income first 4 items show then show more transactions (clicking that will show others Tranactions)
 [X] In Transactions tab all transactions will show (with filter and search)
 
 # Issues :
-[ ] Handle Error message (backend error validations not showing)
+[X] Sync all calculations
+[X] Fix Calculation for Total Value for Individual Cash
+[X] Handle Error message (backend error validations not showing)
 [X] Cash Inventory Notes negative value & number validations not set
 
 # Income-Expense Json Format :

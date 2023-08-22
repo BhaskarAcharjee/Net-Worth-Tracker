@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { dollar, bank } from "../../utils/Icons";
+import { dollar, trash } from "../../utils/Icons";
 import Button from "../Button/Button";
 import SBI from "../../img/SBI.png";
 import { useGlobalContext } from "../../context/globalContext";
@@ -10,10 +10,12 @@ function BankAccounts() {
   const {
     bankaccoounts,
     getBankAccounts,
+    updateBankAccount,
     deleteBankAccount,
     totalBankAccount,
   } = useGlobalContext();
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [CashInventoryError, setCashInventoryError] = useState("");
 
   useEffect(() => {
     getBankAccounts();
@@ -27,11 +29,28 @@ function BankAccounts() {
     setIsFormOpen(!isFormOpen);
   };
 
+  const handleUpdateAmount = async (id, updatedAmount) => {
+    if (updatedAmount < 0) {
+      setCashInventoryError("Negative amounts are not allowed");
+      return; 
+    }
+
+    setCashInventoryError(""); // Clear the error message if the input is valid
+
+    const updatedBankAccount = {
+      ...bankaccoounts.find((account) => account._id === id),
+      amount: updatedAmount,
+    };
+
+    await updateBankAccount(id, updatedBankAccount);
+  };
+
   return (
     <BankAccountsStyled>
       <h2 className="total-income">
         Total Account Balance: <span>₹{totalBankAccount()}</span>
       </h2>
+      {CashInventoryError && <p className="error">{CashInventoryError}</p>}
       <div className="bank-account-list">
         {bankaccoounts.map((account) => (
           <div className="bank-account-item" key={account._id}>
@@ -45,27 +64,44 @@ function BankAccounts() {
             </div>
             <div className="amount">
               <span className="rupee-symbol">{dollar}</span>
-              <input type="text" value={account.amount} readOnly />
+              <input
+                type="text"
+                value={account.amount}
+                onChange={(e) => {
+                  handleUpdateAmount(account._id, e.target.value); // Call the update function on input change
+                }}
+              />
             </div>
-            <div className="buttons">
+            {/* <div className="buttons">
               <Button
-                name="Edit"
+                name="Update"
                 className="edit-button"
                 bg="var(--color-green)"
                 bPad="0.5rem 1rem"
                 color="white"
                 bRad="10px"
               />
-            </div>
-            <div className="buttons">
+            </div> */}
+            {/* <div className="buttons">
               <Button
                 name="Delete"
-                onClick={() => handleDelete(account._id)}
                 className="delete-button"
                 bg="var(--color-delete)"
                 bPad="0.5rem 1rem"
                 color="white"
                 bRad="10px"
+              />
+            </div> */}
+            <div className="buttons">
+              <Button
+                icon={trash}
+                bPad={"1rem"}
+                bRad={"50%"}
+                bg={"var(--primary-color"}
+                color={"#fff"}
+                iColor={"#fff"}
+                hColor={"var(--color-green)"}
+                onClick={() => handleDelete(account._id)}
               />
             </div>
           </div>

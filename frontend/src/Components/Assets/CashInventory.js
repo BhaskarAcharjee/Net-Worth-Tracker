@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
-import Button from "../Button/Button";
 import Rs2000 from "../../img/Rs2000.png";
 import Rs500 from "../../img/Rs500.jpg";
 import Rs200 from "../../img/Rs200.jpeg";
@@ -25,9 +24,8 @@ function CashInventory() {
     denomination5: 0,
   });
 
-  // Use a separate error & success state for the bank account form
   const [DenominationsError, setDenominationsError] = useState("");
-  const [updateSuccess, setUpdateSuccess] = useState(false); // New state for success message
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   useEffect(() => {
     getDenominations().then((data) => {
@@ -36,37 +34,29 @@ function CashInventory() {
   }, []);
 
   const handleDenominationChange = (denomination, value) => {
+    if (parseInt(value) < 0) {
+      setDenominationsError("Negative values not allowed");
+      return;
+    }
+
     setDenominations({
       ...denominations,
       [denomination]: parseInt(value),
     });
 
-    setDenominationsError(""); // Clear validation errors on input change
-    setUpdateSuccess(false); // Clear success message on input change
-  };
+    setDenominationsError("");
+    setUpdateSuccess(false);
 
-  const updateDenominationValues = () => {
-    let isError = false;
-
-    // Check for negative values and non-number values
-    Object.keys(denominations).forEach((denomination) => {
-      const value = denominations[denomination];
-
-      if (value < 0) {
-        setDenominationsError("Negative values not allowed");
-        isError = true;
-      }
-    });
-
-    if (!isError) {
-      updateDenominations(denominations)
-        .then(() => {
-          setUpdateSuccess(true); // Set success message
-        })
-        .catch((error) => {
-          console.log("Update error:", error); // Handle error if necessary
-        });
-    }
+    updateDenominations({
+      ...denominations,
+      [denomination]: parseInt(value),
+    })
+      .then(() => {
+        setUpdateSuccess(true);
+      })
+      .catch((error) => {
+        console.log("Update error:", error);
+      });
   };
 
   const calculateTotal = () => {
@@ -93,14 +83,10 @@ function CashInventory() {
       <h2 className="total-income">
         Total Cash Balance: <span>₹{calculateTotal()}</span>
       </h2>
-      {DenominationsError && <p className="error">{DenominationsError}</p>}{" "}
-      {/* Error message */}
-      {updateSuccess && <p className="success">Update successful!</p>}{" "}
-      {/* Success message */}
+      {DenominationsError && <p className="error">{DenominationsError}</p>}
       <DenominationContainer>
         {Object.keys(denominations).map(
           (denomination) =>
-            // Show only keys starting with denomination
             denomination.startsWith("denomination") && (
               <DenominationItem key={denomination}>
                 <img
@@ -134,20 +120,12 @@ function CashInventory() {
                       handleDenominationChange(denomination, e.target.value)
                     }
                   />
-                  <span>Total: ₹{calculateIndividualTotal()}</span>
+                  <span>Total: ₹{calculateIndividualTotal(denomination)}</span>
                 </div>
               </DenominationItem>
             )
         )}
       </DenominationContainer>
-      <Button
-        name="Update"
-        onClick={updateDenominationValues}
-        bg="var(--color-green)"
-        bPad="0.5rem 1rem"
-        color="white"
-        bRad="10px"
-      />
     </CashInventoryStyled>
   );
 }
@@ -174,7 +152,7 @@ const CashInventoryStyled = styled.div`
   Button {
     margin-top: 0.5rem;
   }
-  .success{
+  .success {
     color: var(--color-green);
   }
 `;

@@ -1,4 +1,4 @@
-const { addBankAccount, getBankAccounts, deleteBankAccount } = require('../controllers/bankAccount');
+const { addBankAccount, getBankAccounts, updateBankAccount, deleteBankAccount } = require('../controllers/bankAccount');
 const { addExpense, getExpense, deleteExpense } = require('../controllers/expense');
 const { addIncome, getIncomes, deleteIncome } = require('../controllers/income');
 const { getCashInventory, updateCashInventory } = require('../controllers/cashInventory')
@@ -16,6 +16,7 @@ router
     .delete('/delete-expense/:id', deleteExpense)
     // bank Accounts
     .post('/add-bankaccount', addBankAccount)
+    .put('/update-bankaccount/:id', updateBankAccount)
     .get('/get-bankaccounts', getBankAccounts)
     .delete('/delete-bankaccount/:id', deleteBankAccount)
     // Cash Inventory

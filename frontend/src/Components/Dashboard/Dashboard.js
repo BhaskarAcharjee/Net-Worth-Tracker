@@ -14,13 +14,17 @@ function Dashboard() {
     totalBalance,
     getIncomes,
     getExpenses,
-    totalAssets, 
-    totalNetWorth
+    getBankAccounts,
+    getDenominations,
+    totalAssets,
+    totalNetWorth,
   } = useGlobalContext();
 
   useEffect(() => {
     getIncomes();
     getExpenses();
+    getBankAccounts();
+    getDenominations();
   }, []);
 
   return (
