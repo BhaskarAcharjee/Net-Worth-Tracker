@@ -70,7 +70,7 @@ function CashInventory() {
   };
 
   const calculateIndividualTotal = (denomination) => {
-    if (denominations[denomination] !== undefined) {
+    if (denominations[denomination] !== undefined || denominations[denomination] !== null) {
       const denominationValue = denominations[denomination];
       const noteValue = parseInt(denomination.slice(12)) || 0;
       return denominationValue * noteValue;

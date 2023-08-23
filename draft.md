@@ -1,5 +1,6 @@
 
 # TO-DO :
+[ ] implement React Routing DOM 
 [ ] Implement Edit option for transactions
 [ ] Added User Authentication & Login-Signup
 [P] Setup Asset & Libilities frontend & Backend
@@ -7,11 +8,13 @@
 [ ] Create a Invesment (Stock, Crypto, other invesment) tab
 [ ] Implement Profile Settings & Customizations
 [ ] Deploy in Production Server
+[ ] Improve Charts in Analytics tab
 [X] Implement Edit option for bank accounts
 [X] Expense & Income first 4 items show then show more transactions (clicking that will show others Tranactions)
 [X] In Transactions tab all transactions will show (with filter and search)
 
 # Issues :
+[ ] Multiple instances of components in the background when navigating between different pages (Login, signup, forgot password) >> use react-router-dom
 [X] Sync all calculations
 [X] Fix Calculation for Total Value for Individual Cash
 [X] Handle Error message (backend error validations not showing)

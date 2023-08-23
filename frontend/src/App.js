@@ -15,37 +15,48 @@ import Assets from "./Components/Assets/Assets";
 import Liabilities from "./Components/Liabilities/Liabilities";
 import InvestmentTrading from "./Components/Trading/InvestmentTrading";
 import DebtsLends from "./Components/DebtsLends/DebtsLends";
+import LoginPage from "./Components/Profile/LoginPage";
 
 function App() {
   const [active, setActive] = useState(1);
+  const [passwordCorrect, setPasswordCorrect] = useState(false);
 
   const global = useGlobalContext();
   console.log(global);
 
+  const handleSignOut = () => {
+    setPasswordCorrect(false); // Reset password status to trigger login page
+    setActive(1); // Reset active menu item to the dashboard
+  };
+
   const displayData = () => {
-    switch (active) {
-      case 1:
-        return <Dashboard />;
-      case 2:
-        return <Transactions />;
-      case 3:
-        return <Income />;
-      case 4:
-        return <Expenses />;
-      case 5:
-        return <Assets />;
-      case 6:
-        return <InvestmentTrading />;
-      case 7:
-        return <Liabilities />;
-      case 8:
-        return <DebtsLends />;
-      case 9:
-        return <Analytics />;
-      case 10:
-        return <Profile />;
-      default:
-        return <Dashboard />;
+    if (passwordCorrect) {
+      switch (active) {
+        case 1:
+          return <Dashboard />;
+        case 2:
+          return <Transactions />;
+        case 3:
+          return <Income />;
+        case 4:
+          return <Expenses />;
+        case 5:
+          return <Assets />;
+        case 6:
+          return <InvestmentTrading />;
+        case 7:
+          return <Liabilities />;
+        case 8:
+          return <DebtsLends />;
+        case 9:
+          return <Analytics />;
+        case 10:
+          return <Profile />;
+        default:
+          return <Dashboard />;
+      }
+    } else {
+      return <LoginPage setPasswordCorrect={setPasswordCorrect} />;
     }
   };
 
@@ -57,7 +68,13 @@ function App() {
     <AppStyled bg={bg} className="App">
       {orbMemo}
       <MainLayout>
-        <Navigation active={active} setActive={setActive} />
+        {passwordCorrect && (
+          <Navigation
+            active={active}
+            setActive={setActive}
+            onSignOut={handleSignOut}
+          />
+        )}
         <main>{displayData()}</main>
       </MainLayout>
     </AppStyled>

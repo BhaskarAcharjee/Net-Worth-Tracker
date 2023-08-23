@@ -5,9 +5,13 @@ import bhaskar from "../../img/bhaskar.jpeg";
 import { signout } from "../../utils/Icons";
 import { menuItems } from "../../utils/menuItems";
 
-function Navigation({ active, setActive }) {
+function Navigation({ active, setActive, onSignOut }) {
   const handleProfileClick = () => {
     setActive(10); // Set the active menu item to trigger display of Profile (case:10 in App.js)
+  };
+
+  const handleSignOut = () => {
+    onSignOut(); // Call the onSignOut function from props
   };
 
   return (
@@ -33,8 +37,8 @@ function Navigation({ active, setActive }) {
           );
         })}
       </ul>
-      <div className="bottom-nav" onClick={handleProfileClick}>
-        <li>{signout} Sign Out</li>
+      <div className="bottom-nav">
+        <li onClick={handleSignOut}>{signout} Sign Out</li>
       </div>
     </NavStyled>
   );

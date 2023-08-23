@@ -4,8 +4,10 @@
     "server": "cd backend && npm start",
     "client": "cd frontend && npm start"
   },
-  
   "devDependencies": {
     "concurrently": "^8.2.0"
+  },
+  "dependencies": {
+    "react-router-dom": "^6.15.0"
   }
 }

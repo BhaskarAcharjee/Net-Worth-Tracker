@@ -11,13 +11,25 @@ The **Net Worth Tracker** is a user-friendly web application designed to help in
 - **Interactive Visualization:** Visual representations, such as charts and graphs, provide users with a visual overview of their financial progress and net worth trends.
 - **Data Privacy and Security:** The application values data privacy and employs modern security practices to ensure users' financial information is kept safe.
 
+## Tabs
+
+- **Dashboard:** An overview of your net worth, recent transactions, and key financial metrics.
+- **View Transactions:** Search, filter, and review your past financial activities conveniently.
+- **Income and Expense Tracking:** Users can conveniently input their income and expense transactions, including details such as date, category, description, and amount.
+- **Assets:** Track your bank account balances, cash inventory, wallet balances, and other valuable assets.
+- **Liabilities:** Keep track of your EMIs, long-term loans, rent payments, and other financial liabilities.
+- **Investment and Trading:** Monitor your investment portfolio and trading activities.
+- **Debts and Lends:** Record your outstanding debts and loans, as well as the money you have lent to others.
+- **Analytics:** Visual representations, such as charts and graphs, provide users with a visual overview of their financial progress and trends.
+
+
 ## Tech Stack
 
-- Frontend: HTML, CSS, JavaScript
-- Backend: Node.js
-- Database: MongoDB
-- Data Visualization: Chart.js
-- Security: Encryption, Authentication, Authorization
+- **Frontend:** React (JSX, CSS)
+- **Backend:** Node.js
+- **Database:** MongoDB
+- **Data Visualization:** Chart.js
+- **Security:** Encryption, Authentication, Authorization (to be implemented)
 
 ## Getting Started
 
@@ -27,9 +39,9 @@ The **Net Worth Tracker** is a user-friendly web application designed to help in
 
 3. **Configure the Environment:** Set up environment variables for database connection and other configurations.
 
-4. **Run the Application:** `npm start`
+4. **Run the Application:** `npm start`  (Setup Concurrent npm start)
 
-5. **Access the Application:** Open your web browser and navigate to `http://localhost:5000`.
+5. **Access the Application:** Open your web browser and navigate to `http://localhost:3000/`.
 
 ## Contributions and Feedback
 
