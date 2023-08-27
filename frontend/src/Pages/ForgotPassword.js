@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import coverImage from "../../img/coverimage.jpg"; // Import your cover image
+import coverImage from "../Images/coverimage2.jpg"; 
 import LoginPage from "./LoginPage";
 
-const ForgotPasswordPage = () => {
+const ForgotPasswordPage = ({ setPasswordCorrect }) => {
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -48,7 +48,7 @@ const ForgotPasswordPage = () => {
             </SignInLink>
           </ForgotPasswordForm>
         ) : (
-          <LoginPage />
+          <LoginPage setPasswordCorrect={setPasswordCorrect} />
         )}
       </ForgotPasswordFormContainer>
     </ForgotPasswordPageContainer>

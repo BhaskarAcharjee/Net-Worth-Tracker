@@ -1,21 +1,21 @@
 import React, { useState, useMemo } from "react";
 import styled from "styled-components";
-import bg from "./img/bg.png";
+import bg from "./Images/bg.png";
+import { useGlobalContext } from "./context/globalContext";
 import { MainLayout } from "./styles/Layouts";
 import Orb from "./Components/Orb/Orb";
 import Navigation from "./Components/Navigation/Navigation";
-import { useGlobalContext } from "./context/globalContext";
-import Dashboard from "./Components/Dashboard/Dashboard";
-import Analytics from "./Components/Dashboard/Analytics";
-import Transactions from "./Components/Transactions/Transactions";
-import Income from "./Components/Income/Income";
-import Expenses from "./Components/Expense/Expense";
-import Profile from "./Components/Profile/Profile";
-import Assets from "./Components/Assets/Assets";
-import Liabilities from "./Components/Liabilities/Liabilities";
-import InvestmentTrading from "./Components/Trading/InvestmentTrading";
-import DebtsLends from "./Components/DebtsLends/DebtsLends";
-import LoginPage from "./Components/Profile/LoginPage";
+import Dashboard from "./Pages/Dashboard";
+import Analytics from "./Pages/Analytics";
+import Transactions from "./Pages/Transactions";
+import Income from "./Pages/Income";
+import Expenses from "./Pages/Expense";
+import Profile from "./Pages/Profile";
+import Assets from "./Pages/Assets";
+import Liabilities from "./Pages/Liabilities";
+import InvestmentTrading from "./Pages/InvestmentTrading";
+import DebtsLends from "./Pages/DebtsLends";
+import LoginPage from "./Pages/LoginPage";
 
 function App() {
   const [active, setActive] = useState(1);

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { useGlobalContext } from "../../context/globalContext";
-import { InnerLayout } from "../../styles/Layouts";
-import { dollar } from "../../utils/Icons";
-import IncomeVsExpenseChart from "../Charts/IncomeVsExpenseChart";
-import IncomeCategoriesPieChart from "../Charts/IncomeCategoriesPieChart";
-import ExpenseCategoriesPieChart from "../Charts/ExpenseCategoriesPieChart";
+import { useGlobalContext } from "../context/globalContext";
+import { InnerLayout } from "../styles/Layouts";
+import { dollar } from "../utils/Icons";
+import IncomeVsExpenseChart from "../Components/Charts/IncomeVsExpenseChart";
+import IncomeCategoriesPieChart from "../Components/Charts/IncomeCategoriesPieChart";
+import ExpenseCategoriesPieChart from "../Components/Charts/ExpenseCategoriesPieChart";
 
 function Analytics() {
   const {

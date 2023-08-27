@@ -8,6 +8,6 @@
     "concurrently": "^8.2.0"
   },
   "dependencies": {
-    "react-router-dom": "^6.15.0"
+    "react-router-dom": "^5.2.0"
   }
 }

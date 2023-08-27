@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import avatar from "../../img/avatar.png";
-import bhaskar from "../../img/bhaskar.jpeg";
+import avatar from "../../Images/avatar.png";
+import bhaskar from "../../Images/bhaskar.jpeg";
 import { signout } from "../../utils/Icons";
 import { menuItems } from "../../utils/menuItems";
 

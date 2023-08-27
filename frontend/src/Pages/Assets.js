@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { InnerLayout } from "../../styles/Layouts";
-import BankAccounts from "./BankAccount";
-import CashInventory from "./CashInventory";
-import { useGlobalContext } from "../../context/globalContext";
+import { InnerLayout } from "../styles/Layouts";
+import BankAccounts from "../Components/Assets/BankAccount";
+import CashInventory from "../Components/Assets/CashInventory";
+import { useGlobalContext } from "../context/globalContext";
 
 function Assets() {
   const { totalAssets } = useGlobalContext();

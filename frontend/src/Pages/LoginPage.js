@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import coverImage from "../../img/coverimage.jpg";
+import coverImage from "../Images/coverimage.jpg";
 import ForgotPasswordPage from "./ForgotPassword";
 import SignUpPage from "./SignUpPage";
 
@@ -67,9 +67,9 @@ const LoginPage = ({ setPasswordCorrect }) => {
             </ForgotPasswordLink>
           </LoginForm>
         ) : signUp ? (
-          <SignUpPage />
+          <SignUpPage setPasswordCorrect={setPasswordCorrect} />
         ) : (
-          <ForgotPasswordPage />
+          <ForgotPasswordPage setPasswordCorrect={setPasswordCorrect} />
         )}
       </LoginFormContainer>
     </LoginPageContainer>

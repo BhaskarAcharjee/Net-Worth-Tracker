@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { InnerLayout } from "../../styles/Layouts";
-import { useGlobalContext } from "../../context/globalContext";
-import IncomeItem from "../IncomeItem/IncomeItem";
+import { InnerLayout } from "../styles/Layouts";
+import { useGlobalContext } from "../context/globalContext";
+import IncomeItem from "../Components/Transactions/IncomeItem";
 
 function Transactions() {
   const {
@@ -43,10 +43,11 @@ function Transactions() {
   );
 
   function searchAndFilter(searchTerm, data) {
-    return data.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      item.amount.toString().includes(searchTerm.toLowerCase())
+    return data.filter(
+      (item) =>
+        item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        item.amount.toString().includes(searchTerm.toLowerCase())
     );
   }
 
@@ -110,7 +111,7 @@ const TransactionsStyled = styled.div`
   .transactions-content {
     display: flex;
     flex-direction: column;
-    margin-top : 1rem;
+    margin-top: 1rem;
     gap: 0.5rem;
   }
 

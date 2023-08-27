@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { InnerLayout } from "../../styles/Layouts";
+import { InnerLayout } from "../styles/Layouts";
 
 function Liabilities() {
   return (
     <LiabilitiesStyled>
       <InnerLayout>
         <h1>Liabilities</h1>
-        
+
         {/* Short Term Loans / EMIs Section */}
         <section className="liabilities-section">
           <h2>Short Term Loans / EMIs</h2>

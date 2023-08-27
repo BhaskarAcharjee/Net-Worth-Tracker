@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
 
-function History() {
+function RecentTransactionsHistory() {
   const { transactionHistory } = useGlobalContext();
 
   const [...history] = transactionHistory();
@@ -54,4 +54,4 @@ const HistoryStyled = styled.div`
   }
 `;
 
-export default History;
+export default RecentTransactionsHistory;

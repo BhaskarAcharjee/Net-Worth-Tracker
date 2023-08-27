@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { InnerLayout } from "../../styles/Layouts";
+import { InnerLayout } from "../styles/Layouts";
 
 function DebtsLends() {
   return (

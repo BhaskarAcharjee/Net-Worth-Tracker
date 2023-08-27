@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import avatar from "../../img/avatar.png";
-import bhaskar from "../../img/bhaskar.jpeg";
-import { useGlobalContext } from "../../context/globalContext";
+import avatar from "../Images/avatar.png";
+import bhaskar from "../Images/bhaskar.jpeg";
+import { useGlobalContext } from "../context/globalContext";
 
 function Profile() {
   const { error, setError } = useGlobalContext(); // Test Purpose

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import coverImage from "../../img/coverimage.jpg";
+import coverImage from "../Images/coverimage2.jpg";
 import LoginPage from "./LoginPage";
 
-const SignUpPage = () => {
+const SignUpPage = ({setPasswordCorrect}) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -75,7 +75,7 @@ const SignUpPage = () => {
             </SignInLink>
           </SignUpForm>
         ) : (
-          <LoginPage />
+          <LoginPage setPasswordCorrect={setPasswordCorrect}/>
         )}
       </SignUpFormContainer>
     </SignUpPageContainer>

@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { InnerLayout } from "../../styles/Layouts";
+import { InnerLayout } from "../styles/Layouts";
 
 function InvestmentTrading() {
   return (
     <InvestmentTradingStyled>
       <InnerLayout>
         <h1>Investment & Trading</h1>
-        
+
         {/* Stocks Section */}
         <section className="investment-section">
           <h2>Stocks</h2>

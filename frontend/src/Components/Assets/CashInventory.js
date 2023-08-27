@@ -34,7 +34,11 @@ function CashInventory() {
   }, []);
 
   const handleDenominationChange = (denomination, value) => {
-    if (parseInt(value) < 0) {
+    const parsedValue = parseInt(value);
+    
+    if (isNaN(parsedValue)) {
+      value = "0"; // Set value to 0 if it's not a valid number
+    } else if (parsedValue < 0) {
       setDenominationsError("Negative values not allowed");
       return;
     }
@@ -70,7 +74,10 @@ function CashInventory() {
   };
 
   const calculateIndividualTotal = (denomination) => {
-    if (denominations[denomination] !== undefined || denominations[denomination] !== null) {
+    if (
+      denominations[denomination] !== undefined ||
+      denominations[denomination] !== null
+    ) {
       const denominationValue = denominations[denomination];
       const noteValue = parseInt(denomination.slice(12)) || 0;
       return denominationValue * noteValue;
