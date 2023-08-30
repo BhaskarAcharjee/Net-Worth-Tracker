@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dollar, trash } from "../../utils/Icons";
 import Button from "../Button/Button";
-import SBI from "../../img/SBI.png";
+import SBI from "../../Images/SBI.png";
 import { useGlobalContext } from "../../context/globalContext";
 import BankAccountForm from "./BankAccountForm";
 

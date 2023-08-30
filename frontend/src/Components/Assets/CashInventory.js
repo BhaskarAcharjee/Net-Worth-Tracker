@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useGlobalContext } from "../../context/globalContext";
-import Rs2000 from "../../img/Rs2000.png";
-import Rs500 from "../../img/Rs500.jpg";
-import Rs200 from "../../img/Rs200.jpeg";
-import Rs100 from "../../img/Rs100.jpg";
-import Rs50 from "../../img/Rs50.jpg";
-import Rs20 from "../../img/Rs20.jpg";
-import Rs10 from "../../img/Rs10.jpg";
-import Rs5 from "../../img/Rs5.jpg";
+import Rs2000 from "../../Images/Rs2000.png";
+import Rs500 from "../../Images/Rs500.jpg";
+import Rs200 from "../../Images/Rs200.jpeg";
+import Rs100 from "../../Images/Rs100.jpg";
+import Rs50 from "../../Images/Rs50.jpg";
+import Rs20 from "../../Images/Rs20.jpg";
+import Rs10 from "../../Images/Rs10.jpg";
+import Rs5 from "../../Images/Rs5.jpg";
 
 function CashInventory() {
   const { getDenominations, updateDenominations } = useGlobalContext();

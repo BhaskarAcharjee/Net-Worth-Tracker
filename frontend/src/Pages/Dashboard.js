@@ -6,6 +6,8 @@ import { InnerLayout } from "../styles/Layouts";
 import { dollar } from "../utils/Icons";
 import MinMaxSalaryExpense from "../Components/Dashboard/MinMaxSalaryExpense";
 import DashboardHeading from "../Components/Dashboard/DashboardHeading";
+import BankAccountSummary from "../Components/Dashboard/BankAccountSummary";
+import CashInventorySummary from "../Components/Dashboard/CashInventorySummary";
 
 function Dashboard() {
   const {
@@ -20,6 +22,8 @@ function Dashboard() {
     getDenominations,
     totalAssets,
     totalNetWorth,
+    bankAccounts,
+    denominations,
   } = useGlobalContext();
 
   useEffect(() => {
@@ -34,6 +38,10 @@ function Dashboard() {
       <InnerLayout>
         <h1>Dashboard</h1>
         <DashboardHeading />
+        <div className="assets-con">
+          <BankAccountSummary bankAccounts={bankAccounts} />
+          <CashInventorySummary denominations={denominations} />
+        </div>
         <div className="stats-con">
           <div className="history-con">
             <RecentTransactionsHistory />
@@ -47,6 +55,13 @@ function Dashboard() {
 }
 
 const DashboardStyled = styled.div`
+  .assets-con {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Adjust the column ratios as needed */
+    gap: 2rem;
+    margin-bottom: 2rem;
+    /* width: 100%; */
+  }
   .stats-con {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
