@@ -3,6 +3,8 @@ import styled from "styled-components";
 import coverImage from "../Images/coverimage.jpg";
 import ForgotPasswordPage from "./ForgotPassword";
 import SignUpPage from "./SignUpPage";
+import axios from "axios";
+import { useGlobalContext } from "../context/globalContext";
 
 const LoginPage = ({ setPasswordCorrect }) => {
   const [email, setEmail] = useState("");
@@ -13,17 +15,28 @@ const LoginPage = ({ setPasswordCorrect }) => {
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setErrorMessage("");
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setErrorMessage("");
   };
 
-  const handleLogin = () => {
-    if (password === "abc123" || password === " ") {
-      setPasswordCorrect(true);
-    } else {
-      setErrorMessage("Incorrect password");
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:5000/api/v1/login", {
+        email,
+        password,
+      });
+
+      if (response.data.message === "Login successful") {
+        setPasswordCorrect(true);
+      } else {
+        setErrorMessage("Invalid credentials");
+      }
+    } catch (error) {
+      setErrorMessage("User not existed");
     }
   };
 
@@ -54,6 +67,7 @@ const LoginPage = ({ setPasswordCorrect }) => {
             />
             <button onClick={handleLogin}>Login</button>
             {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+            {/* <p>{error && <p className="error">{error}</p>}</p> */}
             <SignupLink>
               Not a user?{" "}
               <a href="#" onClick={() => setSignUp(true)}>
@@ -81,6 +95,7 @@ const LoginPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  max-height: 100vh;
 `;
 
 const CoverImage = styled.img`

@@ -1,11 +1,15 @@
 const { addBankAccount, getBankAccounts, updateBankAccount, deleteBankAccount } = require('../controllers/bankAccount');
 const { addExpense, getExpense, deleteExpense } = require('../controllers/expense');
 const { addIncome, getIncomes, deleteIncome } = require('../controllers/income');
-const { getCashInventory, updateCashInventory } = require('../controllers/cashInventory')
+const { getCashInventory, updateCashInventory } = require('../controllers/cashInventory');
+const { login, signup } = require('../controllers/auth');
 
 const router = require('express').Router();
 
 router
+    // Authentication
+    .post('/login', login)
+    .post('/signup', signup)
     // Incomes
     .post('/add-income', addIncome)
     .get('/get-incomes', getIncomes)

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import coverImage from "../Images/coverimage2.jpg";
 import LoginPage from "./LoginPage";
+import axios from "axios";
+import { useGlobalContext } from "../context/globalContext";
 
 const SignUpPage = ({setPasswordCorrect}) => {
   const [fullName, setFullName] = useState("");
@@ -9,25 +11,49 @@ const SignUpPage = ({setPasswordCorrect}) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [signIn, setSignIn] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleFullNameChange = (e) => {
     setFullName(e.target.value);
+    setErrorMessage("");
   };
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
+    setErrorMessage("");
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setErrorMessage("");
   };
 
   const handleConfirmPasswordChange = (e) => {
     setConfirmPassword(e.target.value);
+    setErrorMessage("");
   };
 
-  const handleSignUp = () => {
-    // Add your sign-up logic here
+  const handleSignUp = async () => {
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+    
+    try {
+      const response = await axios.post("http://localhost:5000/api/v1/signup", {
+        fullName,
+        email,
+        password,
+      });
+
+      if (response.data.message === "Signup successful") {
+        setPasswordCorrect(true);
+      } else {
+        setErrorMessage("User already exists");
+      }
+    } catch (error) {
+      setErrorMessage("Server error");
+    }
   };
 
   return (
@@ -67,6 +93,8 @@ const SignUpPage = ({setPasswordCorrect}) => {
               required
             />
             <SignUpButton onClick={handleSignUp}>Sign Up</SignUpButton>
+            {/* <p>{error && <p className="error">{error}</p>}</p> */}
+            {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
             <SignInLink>
               Already have an account?{" "}
               <a href="#" onClick={() => setSignIn(true)}>
@@ -87,6 +115,7 @@ const SignUpPageContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  max-height: 100vh;
 `;
 
 const CoverImage = styled.img`
@@ -159,6 +188,11 @@ const SignInLink = styled.p`
       text-decoration: underline;
     }
   }
+`;
+
+const ErrorText = styled.p`
+  color: red;
+  margin-top: 0.5rem;
 `;
 
 export default SignUpPage;
