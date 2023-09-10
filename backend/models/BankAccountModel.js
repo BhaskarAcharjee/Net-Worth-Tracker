@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const BankAccountSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Reference to the User model
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -32,11 +37,6 @@ const BankAccountSchema = new mongoose.Schema(
       type: String,
       default: "bankaccount",
     },
-    // date: {
-    //     type: Date,
-    //     required: true,
-    //     trim: true
-    // },
   },
   { timestamps: true }
 );

@@ -1,5 +1,11 @@
 const User = require("../models/UserModel");
 
+let userId = null; // Declare a variable to store the userId
+
+exports.getLoginUserId = () => {
+  return userId;
+};
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
@@ -11,7 +17,12 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
-    return res.json({ message: "Login successful" });
+    // Set the userId variable
+    userId = user._id.toString();
+    console.log("User ID in auth:", userId); // Print the userId to the console
+
+    // If login is successful, send the user's ID in the response
+    return res.json({ message: "Login successful", userId: userId });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Server error" });
@@ -32,9 +43,16 @@ exports.signup = async (req, res) => {
     const newUser = new User({ fullName, email, password });
     await newUser.save();
 
+    // Set the userId variable
+    // userId = newUser._id;
+
     return res.json({ message: "Signup successful" });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Server error" });
   }
 };
+
+
+// Export the userId variable
+// module.exports.userId = userId;

@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 
 const CashInventorySchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // Reference to the User model
+      required: true,
+    },
     denomination2000: {
       type: Number,
       default: 0,

@@ -36,7 +36,8 @@ const LoginPage = ({ setPasswordCorrect }) => {
         setErrorMessage("Invalid credentials");
       }
     } catch (error) {
-      setErrorMessage("User not existed");
+      console.error(error); // Log the error for debugging
+      setErrorMessage("Login failed. Please try again.");
     }
   };
 
