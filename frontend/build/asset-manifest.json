@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/static/css/main.d3d79b46.css",
+    "main.js": "/static/js/main.8bc700dd.js",
+    "static/media/bg.png": "/static/media/bg.5d6e37827d387d3b46c2.png",
+    "static/media/Rs5.jpg": "/static/media/Rs5.3435f8fc0d09cc84bad8.jpg",
+    "static/media/coverimage2.jpg": "/static/media/coverimage2.9d5f5c813e8f310a52b8.jpg",
+    "static/media/Rs2000.png": "/static/media/Rs2000.6807596eef8f6b87a24b.png",
+    "static/media/Rs50.jpg": "/static/media/Rs50.927761314214a3d05ce7.jpg",
+    "static/media/Rs100.jpg": "/static/media/Rs100.4181af28517d811a5a01.jpg",
+    "static/media/Rs10.jpg": "/static/media/Rs10.ba9f06e5ab1ba5ed6dd3.jpg",
+    "static/media/Rs500.jpg": "/static/media/Rs500.03aab22cdd0ca9e6b94b.jpg",
+    "static/media/Rs20.jpg": "/static/media/Rs20.9a2e065a1a6964efe14a.jpg",
+    "static/media/coverimage.jpg": "/static/media/coverimage.0caed2ea6a3c3192c58b.jpg",
+    "static/media/bhaskar.jpeg": "/static/media/bhaskar.9d429c5041975b8ef34a.jpeg",
+    "static/media/avatar.png": "/static/media/avatar.417a43ec1b2211879a8c.png",
+    "static/media/SBI.png": "/static/media/SBI.f2dc8511cee3f1764e40.png",
+    "static/media/Rs200.jpeg": "/static/media/Rs200.c184ec3b3d9cce3e68e0.jpeg",
+    "index.html": "/index.html",
+    "main.d3d79b46.css.map": "/static/css/main.d3d79b46.css.map",
+    "main.8bc700dd.js.map": "/static/js/main.8bc700dd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d3d79b46.css",
+    "static/js/main.8bc700dd.js"
+  ]
+}
