@@ -7,6 +7,7 @@ import axios from "axios";
 import { useGlobalContext } from "../context/globalContext";
 
 const LoginPage = ({ setPasswordCorrect }) => {
+  const { login } = useGlobalContext();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,21 +25,8 @@ const LoginPage = ({ setPasswordCorrect }) => {
   };
 
   const handleLogin = async () => {
-    try {
-      const response = await axios.post("http://localhost:5000/api/v1/login", {
-        email,
-        password,
-      });
-
-      if (response.data.message === "Login successful") {
-        setPasswordCorrect(true);
-      } else {
-        setErrorMessage("Invalid credentials");
-      }
-    } catch (error) {
-      console.error(error); // Log the error for debugging
-      setErrorMessage("Login failed. Please try again.");
-    }
+    // Call the login function from the global context
+    login(email, password, setPasswordCorrect, setErrorMessage);
   };
 
   return (

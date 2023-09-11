@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import coverImage from "../Images/coverimage2.jpg"; 
+import coverImage from "../Images/coverimage2.jpg";
 import LoginPage from "./LoginPage";
 
 const ForgotPasswordPage = ({ setPasswordCorrect }) => {
@@ -15,7 +15,7 @@ const ForgotPasswordPage = ({ setPasswordCorrect }) => {
 
   const handleResetPassword = () => {
     if (email) {
-      // You can add your password reset logic here
+      // add password reset logic here
       setSuccessMessage("Password reset instructions sent to your email");
     } else {
       setErrorMessage("Please provide a valid email");

@@ -12,6 +12,60 @@ export const GlobalProvider = ({ children }) => {
   const [denominations, setDenominations] = useState([]);
   const [error, setError] = useState(null);
 
+  //-------------------- Authentication --------------------
+  const login = async (
+    email,
+    password,
+    setPasswordCorrect,
+    setErrorMessage
+  ) => {
+    try {
+      const response = await axios.post(`${BASE_URL}login`, {
+        email,
+        password,
+      });
+
+      if (response.data.message === "Login successful") {
+        setPasswordCorrect(true);
+      } else {
+        setErrorMessage("Invalid credentials");
+      }
+    } catch (error) {
+      console.error(error); // Log the error for debugging
+      setErrorMessage("Login failed. Please try again.");
+    }
+  };
+
+  const signUp = async (
+    fullName,
+    email,
+    password,
+    confirmPassword,
+    setPasswordCorrect,
+    setErrorMessage
+  ) => {
+    if (password !== confirmPassword) {
+      setErrorMessage("Passwords do not match");
+      return;
+    }
+
+    try {
+      const response = await axios.post(`${BASE_URL}signup`, {
+        fullName,
+        email,
+        password,
+      });
+
+      if (response.data.message === "Signup successful") {
+        setPasswordCorrect(true);
+      } else {
+        setErrorMessage("User already exists");
+      }
+    } catch (error) {
+      setErrorMessage("Server error");
+    }
+  };
+
   //-------------------- Incomes --------------------
   const addIncome = async (income) => {
     const response = await axios
@@ -206,6 +260,8 @@ export const GlobalProvider = ({ children }) => {
         updateDenominations,
         error,
         setError,
+        login,
+        signUp,
       }}
     >
       {children}

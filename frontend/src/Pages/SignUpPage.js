@@ -5,7 +5,8 @@ import LoginPage from "./LoginPage";
 import axios from "axios";
 import { useGlobalContext } from "../context/globalContext";
 
-const SignUpPage = ({setPasswordCorrect}) => {
+const SignUpPage = ({ setPasswordCorrect }) => {
+  const { signUp } = useGlobalContext();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,26 +35,15 @@ const SignUpPage = ({setPasswordCorrect}) => {
   };
 
   const handleSignUp = async () => {
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      return;
-    }
-    
-    try {
-      const response = await axios.post("http://localhost:5000/api/v1/signup", {
-        fullName,
-        email,
-        password,
-      });
-
-      if (response.data.message === "Signup successful") {
-        setPasswordCorrect(true);
-      } else {
-        setErrorMessage("User already exists");
-      }
-    } catch (error) {
-      setErrorMessage("Server error");
-    }
+    // Call the login function from the global context
+    signUp(
+      fullName,
+      email,
+      password,
+      confirmPassword,
+      setPasswordCorrect,
+      setErrorMessage
+    );
   };
 
   return (
@@ -103,7 +93,7 @@ const SignUpPage = ({setPasswordCorrect}) => {
             </SignInLink>
           </SignUpForm>
         ) : (
-          <LoginPage setPasswordCorrect={setPasswordCorrect}/>
+          <LoginPage setPasswordCorrect={setPasswordCorrect} />
         )}
       </SignUpFormContainer>
     </SignUpPageContainer>
