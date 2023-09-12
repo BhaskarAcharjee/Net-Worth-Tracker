@@ -42,9 +42,7 @@ const ForgotPasswordPage = ({ setPasswordCorrect }) => {
             {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
             <SignInLink>
               Remember your password?{" "}
-              <a href="#" onClick={() => setSignIn(true)}>
-                Sign in here
-              </a>
+              <a onClick={() => setSignIn(true)}>Sign in here</a>
             </SignInLink>
           </ForgotPasswordForm>
         ) : (

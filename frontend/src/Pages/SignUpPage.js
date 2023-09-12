@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import coverImage from "../Images/coverimage2.jpg";
 import LoginPage from "./LoginPage";
-import axios from "axios";
 import { useGlobalContext } from "../context/globalContext";
 
 const SignUpPage = ({ setPasswordCorrect }) => {
@@ -34,7 +33,8 @@ const SignUpPage = ({ setPasswordCorrect }) => {
     setErrorMessage("");
   };
 
-  const handleSignUp = async () => {
+  const handleSignUp = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
     // Call the login function from the global context
     signUp(
       fullName,
@@ -87,9 +87,7 @@ const SignUpPage = ({ setPasswordCorrect }) => {
             {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
             <SignInLink>
               Already have an account?{" "}
-              <a href="#" onClick={() => setSignIn(true)}>
-                Sign in here
-              </a>
+              <a onClick={() => setSignIn(true)}>Sign in here</a>
             </SignInLink>
           </SignUpForm>
         ) : (

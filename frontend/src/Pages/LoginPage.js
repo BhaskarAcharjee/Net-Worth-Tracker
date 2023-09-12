@@ -3,7 +3,6 @@ import styled from "styled-components";
 import coverImage from "../Images/coverimage.jpg";
 import ForgotPasswordPage from "./ForgotPassword";
 import SignUpPage from "./SignUpPage";
-import axios from "axios";
 import { useGlobalContext } from "../context/globalContext";
 
 const LoginPage = ({ setPasswordCorrect }) => {
@@ -24,7 +23,8 @@ const LoginPage = ({ setPasswordCorrect }) => {
     setErrorMessage("");
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
     // Call the login function from the global context
     login(email, password, setPasswordCorrect, setErrorMessage);
   };
@@ -59,12 +59,12 @@ const LoginPage = ({ setPasswordCorrect }) => {
             {/* <p>{error && <p className="error">{error}</p>}</p> */}
             <SignupLink>
               Not a user?{" "}
-              <a href="#" onClick={() => setSignUp(true)}>
+              <a onClick={() => setSignUp(true)}>
                 Sign up here
               </a>
             </SignupLink>
             <ForgotPasswordLink>
-              <a href="#" onClick={() => setForgotPassword(true)}>
+              <a onClick={() => setForgotPassword(true)}>
                 Forgot password?
               </a>
             </ForgotPasswordLink>

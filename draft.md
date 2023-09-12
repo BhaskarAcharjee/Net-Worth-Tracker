@@ -7,14 +7,16 @@
 [P] Create a actual dashboard of net worth (assets-liabilities) & savings (income-expense)
 [ ] Create a Invesment (Stock, Crypto, other invesment) tab
 [ ] Implement Profile Settings & Customizations
-[ ] Deploy in Production Server
 [P] Improve Charts in Analytics tab
+[ ] When First Time user Signup, all datas are usually empty so write a text such as there is no data to display or add something..etc
+[X] Deploy in Production Server
 [X] Implement Edit option for bank accounts
 [X] Expense & Income first 4 items show then show more transactions (clicking that will show others Tranactions)
 [X] In Transactions tab all transactions will show (with filter and search)
 
 # Issues :
-[ ] Multiple instances of components in the background when navigating between different pages (Login, signup, forgot password) >> use react-router-dom
+[ ] Fix Mobile Responsiveness
+[X] Multiple instances of components in the background when navigating between different pages (Login, signup, forgot password) >> use react-router-dom
 [X] Sync all calculations
 [X] Fix Calculation for Total Value for Individual Cash
 [X] Handle Error message (backend error validations not showing)
