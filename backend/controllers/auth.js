@@ -19,7 +19,7 @@ exports.login = async (req, res) => {
 
     // Set the userId variable
     userId = user._id.toString();
-    console.log("User ID in auth:", userId); // Print the userId to the console
+    console.log("User ID in login:", userId); // Print the userId to the console
 
     // If login is successful, send the user's ID in the response
     return res.json({ message: "Login successful", userId: userId });
@@ -44,7 +44,8 @@ exports.signup = async (req, res) => {
     await newUser.save();
 
     // Set the userId variable
-    // userId = newUser._id;
+    userId = newUser._id.toString();
+    console.log("User ID in signup:", userId); // Print the userId to the console
 
     return res.json({ message: "Signup successful" });
   } catch (error) {
