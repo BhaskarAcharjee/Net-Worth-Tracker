@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { dollar, trash } from "../../utils/Icons";
 import Button from "../Button/Button";
 import SBI from "../../Images/SBI.png";
+import BankLogo from "../../Images/bank-logo.png";
 import { useGlobalContext } from "../../context/globalContext";
 import BankAccountForm from "./BankAccountForm";
 
@@ -32,7 +33,7 @@ function BankAccounts() {
   const handleUpdateAmount = async (id, updatedAmount) => {
     if (updatedAmount < 0) {
       setCashInventoryError("Negative amounts are not allowed");
-      return; 
+      return;
     }
 
     setCashInventoryError(""); // Clear the error message if the input is valid
@@ -55,7 +56,7 @@ function BankAccounts() {
         {bankaccoounts.map((account) => (
           <div className="bank-account-item" key={account._id}>
             <div className="bank-icon">
-              <img src={SBI} alt="Bank Icon" />
+              <img src={BankLogo} alt="Bank Icon" />
             </div>
             <div className="bank-details">
               <h3>{account.name}</h3>
@@ -150,8 +151,8 @@ const BankAccountsStyled = styled.div`
       .bank-icon {
         margin-right: 1rem;
         img {
-          width: 40px;
-          height: 40px;
+          width: 65px;
+          height: 60px;
         }
       }
 

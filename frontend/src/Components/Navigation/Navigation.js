@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import avatar from "../../Images/avatar.png";
 import bhaskar from "../../Images/bhaskar.jpeg";
 import { signout } from "../../utils/Icons";
 import { menuItems } from "../../utils/menuItems";
+import { useGlobalContext } from "../../context/globalContext";
 
 function Navigation({ active, setActive, onSignOut }) {
+  const [userDetails, setUserDetails] = useState(null);
+  const { getUserDetails } = useGlobalContext();
+
   const handleProfileClick = () => {
     setActive(10); // Set the active menu item to trigger display of Profile (case:10 in App.js)
   };
@@ -14,12 +18,26 @@ function Navigation({ active, setActive, onSignOut }) {
     onSignOut(); // Call the onSignOut function from props
   };
 
+  useEffect(() => {
+    // Fetch user details when the component mounts
+    const fetchUserDetails = async () => {
+      const details = await getUserDetails();
+      if (details) {
+        // Extract the first name from fullName
+        const firstName = details.fullName.split(' ')[0];
+        setUserDetails({ ...details, firstName });
+      }
+    };
+
+    fetchUserDetails();
+  }, [getUserDetails]);
+
   return (
     <NavStyled>
       <div className="user-con" onClick={handleProfileClick}>
         <img src={avatar} alt="" />
         <div className="text">
-          <h2>Bhaskar</h2>
+          <h2>{userDetails?.firstName}</h2>
           <p>Finance Tracker</p>
         </div>
       </div>

@@ -1,29 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import avatar from "../Images/avatar.png";
 import bhaskar from "../Images/bhaskar.jpeg";
 import { useGlobalContext } from "../context/globalContext";
 
 function Profile() {
-  const { error, setError } = useGlobalContext(); // Test Purpose
+  const { error, setError, getUserDetails } = useGlobalContext();
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    // Fetch user details when the component mounts
+    const fetchUserDetails = async () => {
+      const details = await getUserDetails();
+      if (details) {
+        setUserDetails(details);
+      }
+    };
+
+    fetchUserDetails();
+  }, [getUserDetails]);
 
   return (
     <ProfileStyled>
       <div className="avatar-con">
-        <img src={bhaskar} alt="Avatar" />
+        <img src={avatar} alt="Avatar" />
       </div>
       <div className="info-con">
-        <h2>Bhaskar Acharjee</h2>
+        <h2>{userDetails?.fullName}</h2>
         <p>Your Finance Tracker</p>
         <div className="details">
           <div className="detail">
             <span>Email:</span>
-            <p>bhaskaracharjee.world@gmail.com</p>
+            <p>{userDetails?.email}</p>
           </div>
-          <div className="detail">
-            <span>Location:</span>
-            <p>Kolkata, West Bengal, India</p>
-          </div>
+          {/* Add more user details as needed */}
         </div>
       </div>
       <p>Error Message : {error && <p className="error">{error}</p>}</p>

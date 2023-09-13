@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 
-// const BASE_URL = "https://net-worth-tracker.onrender.com/api/v1/";
-const BASE_URL = "http://localhost:5000/api/v1/";
+const BASE_URL = "https://net-worth-tracker.onrender.com/api/v1/";
+// const BASE_URL = "http://localhost:5000/api/v1/";
 
 const GlobalContext = React.createContext();
 
@@ -64,6 +64,16 @@ export const GlobalProvider = ({ children }) => {
       }
     } catch (error) {
       setErrorMessage("Server error");
+    }
+  };
+
+  const getUserDetails = async () => {
+    try {
+      const response = await axios.get(`${BASE_URL}get-user-details`);
+      return response.data; // Return user details fetched from the backend
+    } catch (error) {
+      setError(error.response.data.message);
+      return null; // Return null in case of an error
     }
   };
 
@@ -263,6 +273,7 @@ export const GlobalProvider = ({ children }) => {
         setError,
         login,
         signUp,
+        getUserDetails,
       }}
     >
       {children}
