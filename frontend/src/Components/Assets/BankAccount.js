@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dollar, trash } from "../../utils/Icons";
 import Button from "../Button/Button";
-import SBI from "../../Images/SBI.png";
 import BankLogo from "../../Images/bank-logo.png";
 import { useGlobalContext } from "../../context/globalContext";
 import BankAccountForm from "./BankAccountForm";
@@ -52,62 +51,48 @@ function BankAccounts() {
         Total Account Balance: <span>₹{totalBankAccount()}</span>
       </h2>
       {CashInventoryError && <p className="error">{CashInventoryError}</p>}
-      <div className="bank-account-list">
-        {bankaccoounts.map((account) => (
-          <div className="bank-account-item" key={account._id}>
-            <div className="bank-icon">
-              <img src={BankLogo} alt="Bank Icon" />
+      {bankaccoounts.length === 0 ? ( // Check if there are no bank accounts
+        <p className="no-accounts-message">
+          No Bank account details to display.
+        </p>
+      ) : (
+        <div className="bank-account-list">
+          {bankaccoounts.map((account) => (
+            <div className="bank-account-item" key={account._id}>
+              <div className="bank-icon">
+                <img src={BankLogo} alt="Bank Icon" />
+              </div>
+              <div className="bank-details">
+                <h3>{account.name}</h3>
+                <p>Account Number: {account.account}</p>
+                <p>IFSC Code: {account.ifsc}</p>
+              </div>
+              <div className="amount">
+                <span className="rupee-symbol">{dollar}</span>
+                <input
+                  type="text"
+                  value={account.amount}
+                  onChange={(e) => {
+                    handleUpdateAmount(account._id, e.target.value); // Call the update function on input change
+                  }}
+                />
+              </div>
+              <div className="buttons">
+                <Button
+                  icon={trash}
+                  bPad={"1rem"}
+                  bRad={"50%"}
+                  bg={"var(--primary-color"}
+                  color={"#fff"}
+                  iColor={"#fff"}
+                  hColor={"var(--color-green)"}
+                  onClick={() => handleDelete(account._id)}
+                />
+              </div>
             </div>
-            <div className="bank-details">
-              <h3>{account.name}</h3>
-              <p>Account Number: {account.account}</p>
-              <p>IFSC Code: {account.ifsc}</p>
-            </div>
-            <div className="amount">
-              <span className="rupee-symbol">{dollar}</span>
-              <input
-                type="text"
-                value={account.amount}
-                onChange={(e) => {
-                  handleUpdateAmount(account._id, e.target.value); // Call the update function on input change
-                }}
-              />
-            </div>
-            {/* <div className="buttons">
-              <Button
-                name="Update"
-                className="edit-button"
-                bg="var(--color-green)"
-                bPad="0.5rem 1rem"
-                color="white"
-                bRad="10px"
-              />
-            </div> */}
-            {/* <div className="buttons">
-              <Button
-                name="Delete"
-                className="delete-button"
-                bg="var(--color-delete)"
-                bPad="0.5rem 1rem"
-                color="white"
-                bRad="10px"
-              />
-            </div> */}
-            <div className="buttons">
-              <Button
-                icon={trash}
-                bPad={"1rem"}
-                bRad={"50%"}
-                bg={"var(--primary-color"}
-                color={"#fff"}
-                iColor={"#fff"}
-                hColor={"var(--color-green)"}
-                onClick={() => handleDelete(account._id)}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
       <Button
         name="Add Bank Account"
         onClick={toggleForm}
@@ -201,6 +186,11 @@ const BankAccountsStyled = styled.div`
         margin-right: 0.5rem;
       }
     }
+  }
+  .no-accounts-message {
+    font-size: 1.5rem;
+    color: gray;
+    text-align: center;
   }
 `;
 

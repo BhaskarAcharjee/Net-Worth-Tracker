@@ -2,16 +2,18 @@
 # TO-DO :
 [ ] implement React Routing DOM 
 [ ] Implement Edit option for transactions
-[ ] Create a Invesment (Stock, Crypto, other invesment) tab
 [ ] Implement Profile Settings & Customizations
-[ ] When First Time user Signup, all datas are usually empty so write a text such as there is no data to display or add something..etc
 [ ] Upload & save avatar
+[ ] First Time Visit a user show him a demo guest user account (or a tutorial), and then asked him to signup to save his progress
+[ ] Create a settings page
 --- progress ---
-[P] Added User Authentication & Login-Signup
-[P] Setup Asset & Libilities frontend & Backend
+[P] Added User Authentication & Login-Signup (with token authentication)
+[P] Setup Other tabs frontend (improvement) & Backend implementation
 [P] Create a actual dashboard of net worth (assets-liabilities) & savings (income-expense)
 [P] Improve Charts in Analytics tab
---- fixed ---
+--- fixed/completed ---
+[X] Create a Invesment (Stock, Crypto, other invesment) tab
+[X] When First Time user Signup, all datas are usually empty so write a text such as there is no data to display or add something..etc
 [X] Deploy in Production Server
 [X] Implement Edit option for bank accounts
 [X] Expense & Income first 4 items show then show more transactions (clicking that will show others Tranactions)

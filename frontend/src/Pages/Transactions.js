@@ -81,26 +81,32 @@ function Transactions() {
             />
           </div>
           <div className="transactions">
-            {searchFilteredTransactions.map((transaction) => (
-              <IncomeItem
-                key={transaction._id}
-                id={transaction._id}
-                title={transaction.title}
-                description={transaction.description}
-                amount={transaction.amount}
-                date={transaction.date}
-                type={transaction.type}
-                category={transaction.category}
-                // Indicator color based on type
-                indicatorColor={
-                  transaction.type === "income" ? "var(--color-green)" : "red"
-                }
-                // Delete function based on type
-                deleteItem={
-                  transaction.type === "income" ? deleteIncome : deleteExpense
-                }
-              />
-            ))}
+            {allTransactions.length === 0 ? (
+              <p className="no-transactions-message">
+                No transactions to display.
+              </p>
+            ) : (
+              searchFilteredTransactions.map((transaction) => (
+                <IncomeItem
+                  key={transaction._id}
+                  id={transaction._id}
+                  title={transaction.title}
+                  description={transaction.description}
+                  amount={transaction.amount}
+                  date={transaction.date}
+                  type={transaction.type}
+                  category={transaction.category}
+                  // Indicator color based on type
+                  indicatorColor={
+                    transaction.type === "income" ? "var(--color-green)" : "red"
+                  }
+                  // Delete function based on type
+                  deleteItem={
+                    transaction.type === "income" ? deleteIncome : deleteExpense
+                  }
+                />
+              ))
+            )}
           </div>
         </div>
       </InnerLayout>
@@ -131,6 +137,11 @@ const TransactionsStyled = styled.div`
     font-family: inherit;
     font-size: inherit;
     color: rgba(34, 34, 96, 0.9);
+  }
+  .no-transactions-message {
+    font-size: 1.5rem;
+    color: gray;
+    text-align: center;
   }
 `;
 

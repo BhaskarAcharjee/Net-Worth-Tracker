@@ -29,25 +29,29 @@ function Expenses() {
             <ExpenseForm />
           </div>
           <div className="incomes">
-            {displayExpenses.map((income) => {
-              const { _id, title, amount, date, category, description, type } =
-                income;
-              console.log(income);
-              return (
-                <IncomeItem
-                  key={_id}
-                  id={_id}
-                  title={title}
-                  description={description}
-                  amount={amount}
-                  date={date}
-                  type={type}
-                  category={category}
-                  indicatorColor="red"
-                  deleteItem={deleteExpense}
-                />
-              );
-            })}
+            {displayExpenses.length === 0 ? ( // Check if there are no expenses
+              <p className="no-expenses-message">No expenses to display.</p>
+            ) : (
+              displayExpenses.map((income) => {
+                const { _id, title, amount, date, category, description, type } =
+                  income;
+                console.log(income);
+                return (
+                  <IncomeItem
+                    key={_id}
+                    id={_id}
+                    title={title}
+                    description={description}
+                    amount={amount}
+                    date={date}
+                    type={type}
+                    category={category}
+                    indicatorColor="red"
+                    deleteItem={deleteExpense}
+                  />
+                );
+              })
+            )}
             {!showAllExpenses && expenses.length > 4 && (
               <Button
                 name="Show More"
@@ -93,6 +97,11 @@ const ExpenseStyled = styled.div`
     .incomes {
       flex: 1;
     }
+  }
+  .no-expenses-message {
+    font-size: 1.5rem;
+    color: gray;
+    text-align: center;
   }
 `;
 

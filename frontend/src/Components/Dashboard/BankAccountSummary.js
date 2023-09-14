@@ -13,24 +13,30 @@ function BankAccountSummary() {
   return (
     <BankAccountSummaryStyled>
       <h2>Bank Account</h2>
-      <div className="bank-account-list">
-        {bankaccoounts.map((account) => (
-          <div className="bank-account-item" key={account._id}>
-            <div className="bank-icon">
-              <span className="bank-symbol"> {bank}</span>
+      {bankaccoounts.length === 0 ? ( // Check if there are no bank accounts
+        <p className="no-accounts-message">
+          No Bank account details to display.
+        </p>
+      ) : (
+        <div className="bank-account-list">
+          {bankaccoounts.map((account) => (
+            <div className="bank-account-item" key={account._id}>
+              <div className="bank-icon">
+                <span className="bank-symbol"> {bank}</span>
+              </div>
+              <div className="bank-details">
+                <h3>{account.name}</h3>
+                <p>Account Number: {account.account}</p>
+                <p>IFSC Code: {account.ifsc}</p>
+              </div>
+              <div className="amount">
+                <span className="rupee-symbol">{dollar}</span>
+                <p>{account.amount}</p>
+              </div>
             </div>
-            <div className="bank-details">
-              <h3>{account.name}</h3>
-              <p>Account Number: {account.account}</p>
-              <p>IFSC Code: {account.ifsc}</p>
-            </div>
-            <div className="amount">
-              <span className="rupee-symbol">{dollar}</span>
-              <p>{account.amount}</p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </BankAccountSummaryStyled>
   );
 }
@@ -80,6 +86,12 @@ const BankAccountSummaryStyled = styled.div`
         color: rgba(34, 34, 96, 0.9);
       }
     }
+  }
+  .no-accounts-message {
+    font-size: 1.5rem;
+    color: gray;
+    text-align: center;
+    margin: 2rem;
   }
 `;
 

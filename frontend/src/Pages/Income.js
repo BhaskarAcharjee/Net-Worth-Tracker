@@ -29,20 +29,24 @@ function Income() {
             <Form />
           </div>
           <div className="incomes">
-            {displayIncomes.map((income) => (
-              <IncomeItem
-                key={income._id}
-                id={income._id}
-                title={income.title}
-                description={income.description}
-                amount={income.amount}
-                date={income.date}
-                type={income.type}
-                category={income.category}
-                indicatorColor="var(--color-green)"
-                deleteItem={deleteIncome}
-              />
-            ))}
+            {displayIncomes.length === 0 ? (
+              <p className="no-incomes-message">No incomes to display.</p>
+            ) : (
+              displayIncomes.map((income) => (
+                <IncomeItem
+                  key={income._id}
+                  id={income._id}
+                  title={income.title}
+                  description={income.description}
+                  amount={income.amount}
+                  date={income.date}
+                  type={income.type}
+                  category={income.category}
+                  indicatorColor="var(--color-green)"
+                  deleteItem={deleteIncome}
+                />
+              ))
+            )}
             {!showAllIncomes && incomes.length > 4 && (
               <Button
                 name="Show More"
@@ -88,6 +92,11 @@ const IncomeStyled = styled.div`
     .incomes {
       flex: 1;
     }
+  }
+  .no-incomes-message {
+    font-size: 1.5rem;
+    color: gray;
+    text-align: center;
   }
 `;
 
