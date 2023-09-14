@@ -74,9 +74,10 @@ function Transactions() {
             </select>
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ width: "100%" }}
             />
           </div>
           <div className="transactions">

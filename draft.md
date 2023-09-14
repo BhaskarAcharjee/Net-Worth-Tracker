@@ -5,6 +5,7 @@
 [ ] Create a Invesment (Stock, Crypto, other invesment) tab
 [ ] Implement Profile Settings & Customizations
 [ ] When First Time user Signup, all datas are usually empty so write a text such as there is no data to display or add something..etc
+[ ] Upload & save avatar
 --- progress ---
 [P] Added User Authentication & Login-Signup
 [P] Setup Asset & Libilities frontend & Backend

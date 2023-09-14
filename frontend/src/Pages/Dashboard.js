@@ -43,8 +43,8 @@ function Dashboard() {
           <CashInventorySummary denominations={denominations} />
         </div>
         <div className="stats-con">
-          <div className="history-con">
             <RecentTransactionsHistory />
+            <div className="minmax-con">
             <MinMaxSalaryExpense title="Salary" data={incomes} />
             <MinMaxSalaryExpense title="Expense" data={expenses} />
           </div>
@@ -63,40 +63,19 @@ const DashboardStyled = styled.div`
     /* width: 100%; */
   }
   .stats-con {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex; /* Change to flex layout */
+    flex-wrap: wrap; /* Wrap items to next row if needed */
     gap: 2rem;
 
-    .history-con {
-      grid-column: 4 / -1;
-      h2 {
-        margin: 1rem 0;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .salary-title {
-        font-size: 1.2rem;
-        span {
-          font-size: 1.8rem;
-        }
-      }
-      .salary-item {
-        background: #fcf6f9;
-        border: 2px solid #ffffff;
-        box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-        padding: 1rem;
-        border-radius: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        p {
-          font-weight: 600;
-          font-size: 1.6rem;
-        }
-      }
+    .minmax-con {
+      flex: 1; /* Take up 1/2 of the available space */
+    }
+
+    .min-max-con {
+      flex: 1; /* Take up 1/2 of the available space */
     }
   }
 `;
+
 
 export default Dashboard;

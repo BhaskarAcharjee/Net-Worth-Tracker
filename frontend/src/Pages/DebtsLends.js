@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { InnerLayout } from "../styles/Layouts";
+import Lends from "../Components/DebtsLends/Lends";
+import Debts from "../Components/DebtsLends/Debts";
 
 function DebtsLends() {
   return (
@@ -36,32 +38,6 @@ const DebtsLendsStyled = styled.div`
       margin-bottom: 1rem;
     }
   }
-`;
-
-function Debts() {
-  return (
-    <DebtsStyled>
-      {/* Add debts content */}
-      {/* You can add forms, tables, etc. for debts */}
-    </DebtsStyled>
-  );
-}
-
-const DebtsStyled = styled.div`
-  /* Add styling for the Debts component */
-`;
-
-function Lends() {
-  return (
-    <LendsStyled>
-      {/* Add lends content */}
-      {/* You can add forms, tables, etc. for lends */}
-    </LendsStyled>
-  );
-}
-
-const LendsStyled = styled.div`
-  /* Add styling for the Lends component */
 `;
 
 export default DebtsLends;
