@@ -1,5 +1,6 @@
 export const categories = <i className="fa-solid fa-tags"></i>
 export const accounts = <i className="fa-solid fa-wallet"></i>
+export const wallet = <i className="fa-solid fa-wallet"></i>
 export const settings = <i className="fa-solid fa-cog"></i>
 export const logout = <i className="fa-solid fa-sign-out"></i>
 export const card = <i className="fa-brands fa-cc-visa"></i>

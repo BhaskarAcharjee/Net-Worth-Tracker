@@ -12,6 +12,7 @@
 [P] Create a actual dashboard of net worth (assets-liabilities) & savings (income-expense)
 [P] Improve Charts in Analytics tab
 --- fixed/completed ---
+[X] Total Calculation decimal overflow (limited upto 2 places)
 [X] Create a Invesment (Stock, Crypto, other invesment) tab
 [X] When First Time user Signup, all datas are usually empty so write a text such as there is no data to display or add something..etc
 [X] Deploy in Production Server

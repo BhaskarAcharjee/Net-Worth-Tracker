@@ -4,6 +4,7 @@ import { InnerLayout } from "../styles/Layouts";
 import BankAccounts from "../Components/Assets/BankAccount";
 import CashInventory from "../Components/Assets/CashInventory";
 import { useGlobalContext } from "../context/globalContext";
+import WalletAccounts from "../Components/Assets/WalletAccount";
 
 function Assets() {
   const { totalAssets } = useGlobalContext();
@@ -19,6 +20,11 @@ function Assets() {
         <section className="asset-section">
           <h2>Bank Accounts</h2>
           <BankAccounts />
+        </section>
+        {/* Bank Account Section */}
+        <section className="asset-section">
+          <h2>Wallet Accounts</h2>
+          <WalletAccounts />
         </section>
 
         {/* Cash Inventory Section */}

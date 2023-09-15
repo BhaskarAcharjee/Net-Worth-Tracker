@@ -2,27 +2,27 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dollar, trash } from "../../utils/Icons";
 import Button from "../Button/Button";
-import BankLogo from "../../Images/bank-logo.png";
+import BankLogo from "../../Images/wallet-logo.webp";
 import { useGlobalContext } from "../../context/globalContext";
-import BankAccountForm from "./BankAccountForm";
+import WalletAccountForm from "./WalletAccountForm";
 
-function BankAccounts() {
+function WalletAccounts() {
   const {
-    bankaccoounts,
-    getBankAccounts,
-    updateBankAccount,
-    deleteBankAccount,
-    totalBankAccount,
+    walletaccoounts,
+    getWalletAccounts,
+    updateWalletAccount,
+    deleteWalletAccount,
+    totalWalletAccount,
   } = useGlobalContext();
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [BankAccountError, setBankAccountError] = useState("");
+  const [WalletAccountError, setWalletAccountError] = useState("");
 
   useEffect(() => {
-    getBankAccounts();
+    getWalletAccounts();
   }, []);
 
   const handleDelete = (id) => {
-    deleteBankAccount(id);
+    deleteWalletAccount(id);
   };
 
   const toggleForm = () => {
@@ -31,41 +31,40 @@ function BankAccounts() {
 
   const handleUpdateAmount = async (id, updatedAmount) => {
     if (updatedAmount < 0) {
-      setBankAccountError("Negative amounts are not allowed");
+      setWalletAccountError("Negative amounts are not allowed");
       return;
     }
 
-    setBankAccountError(""); // Clear the error message if the input is valid
+    setWalletAccountError(""); // Clear the error message if the input is valid
 
-    const updatedBankAccount = {
-      ...bankaccoounts.find((account) => account._id === id),
+    const updatedWalletAccount = {
+      ...walletaccoounts.find((account) => account._id === id),
       amount: updatedAmount,
     };
 
-    await updateBankAccount(id, updatedBankAccount);
+    await updateWalletAccount(id, updatedWalletAccount);
   };
 
   return (
-    <BankAccountsStyled>
+    <WalletAccountsStyled>
       <h2 className="total-income">
-        Total Account Balance: <span>₹{totalBankAccount()}</span>
+        Total Wallet Balance: <span>₹{totalWalletAccount()}</span>
       </h2>
-      {BankAccountError && <p className="error">{BankAccountError}</p>}
-      {bankaccoounts.length === 0 ? ( // Check if there are no bank accounts
+      {WalletAccountError && <p className="error">{WalletAccountError}</p>}
+      {walletaccoounts.length === 0 ? ( // Check if there are no bank accounts
         <p className="no-accounts-message">
-          No Bank account details to display.
+          No Wallet account details to display.
         </p>
       ) : (
         <div className="bank-account-list">
-          {bankaccoounts.map((account) => (
+          {walletaccoounts.map((account) => (
             <div className="bank-account-item" key={account._id}>
               <div className="bank-icon">
                 <img src={BankLogo} alt="Bank Icon" />
               </div>
               <div className="bank-details">
                 <h3>{account.name}</h3>
-                <p>Account Number: {account.account}</p>
-                <p>IFSC Code: {account.ifsc}</p>
+                <p>Description: {account.description}</p>
               </div>
               <div className="amount">
                 <span className="rupee-symbol">{dollar}</span>
@@ -94,7 +93,7 @@ function BankAccounts() {
         </div>
       )}
       <Button
-        name="Add Bank Account"
+        name="Add Wallet Account"
         onClick={toggleForm}
         className="add-account-button"
         bg="var(--color-green)"
@@ -102,12 +101,12 @@ function BankAccounts() {
         color="white"
         bRad="10px"
       />
-      {isFormOpen && <BankAccountForm toggleForm={toggleForm} />}
-    </BankAccountsStyled>
+      {isFormOpen && <WalletAccountForm toggleForm={toggleForm} />}
+    </WalletAccountsStyled>
   );
 }
 
-const BankAccountsStyled = styled.div`
+const WalletAccountsStyled = styled.div`
   .total-income {
     display: flex;
     justify-content: center;
@@ -194,4 +193,4 @@ const BankAccountsStyled = styled.div`
   }
 `;
 
-export default BankAccounts;
+export default WalletAccounts;

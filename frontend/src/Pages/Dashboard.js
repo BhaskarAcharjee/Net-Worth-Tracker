@@ -8,6 +8,7 @@ import MinMaxSalaryExpense from "../Components/Dashboard/MinMaxSalaryExpense";
 import DashboardHeading from "../Components/Dashboard/DashboardHeading";
 import BankAccountSummary from "../Components/Dashboard/BankAccountSummary";
 import CashInventorySummary from "../Components/Dashboard/CashInventorySummary";
+import WalletAccountSummary from "../Components/Dashboard/WalletAccountSummary";
 
 function Dashboard() {
   const {
@@ -23,6 +24,7 @@ function Dashboard() {
     totalAssets,
     totalNetWorth,
     bankAccounts,
+    walletAccounts,
     denominations,
   } = useGlobalContext();
 
@@ -40,11 +42,12 @@ function Dashboard() {
         <DashboardHeading />
         <div className="assets-con">
           <BankAccountSummary bankAccounts={bankAccounts} />
+          <WalletAccountSummary walletAccounts={walletAccounts} />
           <CashInventorySummary denominations={denominations} />
         </div>
         <div className="stats-con">
-            <RecentTransactionsHistory />
-            <div className="minmax-con">
+          <RecentTransactionsHistory />
+          <div className="minmax-con">
             <MinMaxSalaryExpense title="Salary" data={incomes} />
             <MinMaxSalaryExpense title="Expense" data={expenses} />
           </div>
@@ -76,6 +79,5 @@ const DashboardStyled = styled.div`
     }
   }
 `;
-
 
 export default Dashboard;

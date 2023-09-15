@@ -10,6 +10,7 @@ export const GlobalProvider = ({ children }) => {
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [bankaccoounts, setBankAccounts] = useState([]);
+  const [walletaccoounts, setWalletAccounts] = useState([]);
   const [denominations, setDenominations] = useState([]);
   const [error, setError] = useState(null);
 
@@ -104,7 +105,7 @@ export const GlobalProvider = ({ children }) => {
       totalIncome = totalIncome + income.amount;
     });
 
-    return totalIncome;
+    return parseFloat(totalIncome.toFixed(2));
   };
 
   //-------------------- Expenses --------------------
@@ -129,18 +130,15 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const totalExpenses = () => {
-    let totalIncome = 0;
+    let totalExpense = 0;
     expenses.forEach((income) => {
-      totalIncome = totalIncome + income.amount;
+      totalExpense = totalExpense + income.amount;
     });
 
-    return totalIncome;
+    return parseFloat(totalExpense.toFixed(2));
   };
 
-  const totalBalance = () => {
-    return totalIncome() - totalExpenses();
-  };
-
+  //-------------------- Transactions --------------------
   const transactionHistory = () => {
     const history = [...incomes, ...expenses];
     history.sort((a, b) => {
@@ -199,6 +197,55 @@ export const GlobalProvider = ({ children }) => {
     return totalBankAccount;
   };
 
+  //-------------------- Wallet Accounts --------------------
+  const addWalletAccount = async (walletAccount) => {
+    const response = await axios
+      .post(`${BASE_URL}add-walletaccount`, walletAccount)
+      .catch((err) => {
+        setError(err.response.data.message);
+      });
+    getWalletAccounts();
+  };
+
+  const getWalletAccounts = async () => {
+    const response = await axios.get(`${BASE_URL}get-walletaccounts`);
+    setWalletAccounts(response.data);
+    console.log(response.data);
+  };
+
+  const updateWalletAccount = async (id, updatedWalletAccount) => {
+    try {
+      const response = await axios.put(
+        `${BASE_URL}update-walletaccount/${id}`,
+        updatedWalletAccount
+      );
+      const updatedAccounts = walletaccoounts.map((account) => {
+        if (account._id === id) {
+          return response.data.walletAccount;
+        }
+        return account;
+      });
+      setWalletAccounts(updatedAccounts);
+      console.log("Update Response:", response.data);
+    } catch (error) {
+      setError(error.response.data.message);
+    }
+  };
+
+  const deleteWalletAccount = async (id) => {
+    const res = await axios.delete(`${BASE_URL}delete-walletaccount/${id}`);
+    getWalletAccounts();
+  };
+
+  const totalWalletAccount = () => {
+    let totalWalletAccount = 0;
+    walletaccoounts.forEach((walletAccount) => {
+      totalWalletAccount = totalWalletAccount + walletAccount.amount;
+    });
+
+    return totalWalletAccount;
+  };
+
   //-------------------- Cash Inventory Denominations --------------------
   const getDenominations = async () => {
     try {
@@ -233,12 +280,21 @@ export const GlobalProvider = ({ children }) => {
     );
   };
 
+  //-------------------- Grand Total Calculations --------------------
+  const totalBalance = () => {
+    const total = totalIncome() - totalExpenses();
+    return parseFloat(total.toFixed(2));
+  };
+
   const totalAssets = () => {
-    return totalBankAccount() + totalCashInventory();
+    const total =
+      totalBankAccount() + totalWalletAccount() + totalCashInventory();
+    return parseFloat(total.toFixed(2));
   };
 
   const totalNetWorth = () => {
-    return totalAssets() - totalExpenses();
+    const total = totalAssets() - totalExpenses();
+    return parseFloat(total.toFixed(2));
   };
 
   // -------------------- Return GlobalContext --------------------
@@ -246,34 +302,49 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        // auth
+        login,
+        signUp,
+        getUserDetails,
+        // incomes
         incomes,
         addIncome,
         getIncomes,
         deleteIncome,
         totalIncome,
+        // expenses
         expenses,
         addExpense,
         getExpenses,
         deleteExpense,
         totalExpenses,
-        totalBalance,
+        // transactions
         transactionHistory,
+        // bank accounts
         bankaccoounts,
         addBankAccount,
         getBankAccounts,
         updateBankAccount,
         deleteBankAccount,
         totalBankAccount,
-        totalAssets,
-        totalNetWorth,
+        // wallet accounts
+        walletaccoounts,
+        addWalletAccount,
+        getWalletAccounts,
+        updateWalletAccount,
+        deleteWalletAccount,
+        totalWalletAccount,
+        // cash inventory
         denominations,
         getDenominations,
         updateDenominations,
+        // grand totals
+        totalBalance,
+        totalAssets,
+        totalNetWorth,
+        // error
         error,
         setError,
-        login,
-        signUp,
-        getUserDetails,
       }}
     >
       {children}
