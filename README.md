@@ -9,7 +9,13 @@ The **Net Worth Tracker** is a user-friendly web application designed to help in
 Please note that this project is optimized for desktop viewing only. It may not provide an optimal experience on mobile devices.
 
 ## Screenshots
-
+![Screenshot (303)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/143e4e48-154f-47cd-9936-dba8940c874b)
+![Screenshot (304)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/83fbd2a9-601a-4ee6-8745-5ebe7190bf4a)
+![Screenshot (305)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/85f2908b-54a9-4964-b6c3-f6d5fcbddf3d)
+![Screenshot (306)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/cf9c6ad9-cf4c-4e92-a919-d27e28380d3a)
+![Screenshot (307)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/15e5f532-3521-4bfc-a858-149d56dfcf46)
+![Screenshot (308)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/972bc3a1-e226-4290-9f6a-f884d611aefe)
+![Screenshot (309)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/4c99aee1-2371-4825-89b4-51b8fb8b7b45)
 
 ## Features
 
