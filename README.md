@@ -4,6 +4,13 @@ The **Net Worth Tracker** is a user-friendly web application designed to help in
 
 **Live Website:** [Net Worth Tracker](https://net-worth-tracker.netlify.app/)
 
+## Compatibility
+
+Please note that this project is optimized for desktop viewing only. It may not provide an optimal experience on mobile devices.
+
+## Screenshots
+
+
 ## Features
 
 - **User-Friendly Interface:** The application boasts an intuitive and easy-to-navigate interface, ensuring users of all technical backgrounds can comfortably track their finances.
