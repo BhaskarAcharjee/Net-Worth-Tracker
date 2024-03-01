@@ -1,4 +1,5 @@
 const User = require("../models/UserModel");
+const jwt = require("jsonwebtoken");
 
 let userId = null; // Declare a variable to store the userId
 
@@ -21,8 +22,13 @@ exports.login = async (req, res) => {
     userId = user._id.toString();
     console.log("User ID in login:", userId); // Print the userId to the console
 
-    // If login is successful, send the user's ID in the response
-    return res.json({ message: "Login successful", userId: userId });
+    // Generate a JWT token with a 7-day expiration
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    // If login is successful, send the user's ID and token in the response
+    return res.json({ message: "Login successful", userId: user._id, token });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Server error" });
@@ -47,7 +53,12 @@ exports.signup = async (req, res) => {
     userId = newUser._id.toString();
     console.log("User ID in signup:", userId); // Print the userId to the console
 
-    return res.json({ message: "Signup successful" });
+    // Generate a JWT token with a 7-day expiration
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
+      expiresIn: "7d",
+    });
+
+    return res.json({ message: "Signup successful", token });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Server error" });
