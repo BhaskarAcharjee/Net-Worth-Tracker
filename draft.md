@@ -22,13 +22,14 @@
 
 # Issues :
 [ ] Fix Mobile Responsiveness
-[ ] Login/Signup?forgotPage off scrollable
-[-] Multiple instances of components in the background when navigating between different pages (Login, signup, forgot password) >> use react-router-dom
+[ ] Improve Guest Login Logic, delete guest session
 --- fixed ---
 [X] Sync all calculations
 [X] Fix Calculation for Total Value for Individual Cash
 [X] Handle Error message (backend error validations not showing)
 [X] Cash Inventory Notes negative value & number validations not set
+[X] Login/Signup?forgotPage off scrollable
+[x] Multiple instances of components in the background when navigating between different pages (Login, signup, forgot password) >> use react-router-dom
 
 # Income-Expense Json Format :
 {

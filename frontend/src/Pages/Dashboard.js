@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useGlobalContext } from "../context/globalContext";
 import RecentTransactionsHistory from "../Components/Dashboard/RecentTransactionsHistory";
 import { InnerLayout } from "../styles/Layouts";
-import { dollar } from "../utils/Icons";
 import MinMaxSalaryExpense from "../Components/Dashboard/MinMaxSalaryExpense";
 import DashboardHeading from "../Components/Dashboard/DashboardHeading";
 import BankAccountSummary from "../Components/Dashboard/BankAccountSummary";
@@ -12,17 +11,12 @@ import WalletAccountSummary from "../Components/Dashboard/WalletAccountSummary";
 
 function Dashboard() {
   const {
-    totalExpenses,
     incomes,
     expenses,
-    totalIncome,
-    totalBalance,
     getIncomes,
     getExpenses,
     getBankAccounts,
     getDenominations,
-    totalAssets,
-    totalNetWorth,
     bankAccounts,
     walletAccounts,
     denominations,
@@ -43,14 +37,16 @@ function Dashboard() {
         <div className="assets-con">
           <BankAccountSummary bankAccounts={bankAccounts} />
           <WalletAccountSummary walletAccounts={walletAccounts} />
-          <CashInventorySummary denominations={denominations} />
         </div>
         <div className="stats-con">
-          <RecentTransactionsHistory />
-          <div className="minmax-con">
-            <MinMaxSalaryExpense title="Salary" data={incomes} />
-            <MinMaxSalaryExpense title="Expense" data={expenses} />
+          <div className="summary-con">
+            <CashInventorySummary denominations={denominations} />
+            <div className="minmax-con">
+              <MinMaxSalaryExpense title="Salary" data={incomes} />
+              <MinMaxSalaryExpense title="Expense" data={expenses} />
+            </div>
           </div>
+          <RecentTransactionsHistory />
         </div>
       </InnerLayout>
     </DashboardStyled>
@@ -60,22 +56,25 @@ function Dashboard() {
 const DashboardStyled = styled.div`
   .assets-con {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Adjust the column ratios as needed */
+    grid-template-columns: 1fr 1fr; /* Equal columns for Bank and Wallet summaries */
     gap: 2rem;
     margin-bottom: 2rem;
-    /* width: 100%; */
   }
   .stats-con {
-    display: flex; /* Change to flex layout */
-    flex-wrap: wrap; /* Wrap items to next row if needed */
+    display: grid;
+    grid-template-columns: 1fr; /* One column layout */
     gap: 2rem;
-
-    .minmax-con {
-      flex: 1; /* Take up 1/2 of the available space */
+    
+    .summary-con {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Two columns layout for Cash Inventory and MinMax */
+      gap: 2rem;
     }
-
-    .min-max-con {
-      flex: 1; /* Take up 1/2 of the available space */
+    
+    .minmax-con {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
   }
 `;

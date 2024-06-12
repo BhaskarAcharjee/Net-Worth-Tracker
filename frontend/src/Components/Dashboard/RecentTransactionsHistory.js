@@ -7,6 +7,10 @@ function RecentTransactionsHistory() {
 
   const [...history] = transactionHistory();
 
+  const formatAmount = (amount) => {
+    return Number.isInteger(amount) ? amount : amount.toFixed(2); // amounts without decimal values will be shown as whole numbers
+  };
+
   return (
     <HistoryStyled>
       <h2>Recent History</h2>
@@ -31,8 +35,8 @@ function RecentTransactionsHistory() {
                 }}
               >
                 {type === "expense"
-                  ? `-${amount <= 0 ? 0 : amount}`
-                  : `+${amount <= 0 ? 0 : amount}`}
+                  ? `-₹${formatAmount(amount <= 0 ? 0 : amount)}`
+                  : `+₹${formatAmount(amount <= 0 ? 0 : amount)}`}
               </p>
             </div>
           );

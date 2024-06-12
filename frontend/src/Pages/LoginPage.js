@@ -29,6 +29,14 @@ const LoginPage = ({ setPasswordCorrect }) => {
     login(email, password, setPasswordCorrect, setErrorMessage);
   };
 
+  // Need to improve logic
+  const handleGuestLogin = () => {
+     // Login the user as a guest (temporary)
+    const guestEmail = "guest@capitalclarity.com";
+    const guestPassword = "Welcome@123";
+    login(guestEmail, guestPassword, setPasswordCorrect, setErrorMessage);
+  };
+
   return (
     <>
       {!forgotPassword && !signUp ? (
@@ -47,6 +55,9 @@ const LoginPage = ({ setPasswordCorrect }) => {
                   <FeatureItem>📈 Real-time Net Worth Calculation</FeatureItem>
                   <FeatureItem>📊 Comprehensive Asset Management</FeatureItem>
                 </FeaturesList>
+                <GuestLoginButton onClick={handleGuestLogin}>
+                  Preview Demo
+                </GuestLoginButton>
               </Content>
             </LeftContainer>
             <RightContainer>
@@ -249,6 +260,22 @@ const Anchor = styled.a`
 
   &:hover {
     text-decoration: underline;
+  }
+`;
+
+const GuestLoginButton = styled.button`
+  margin-top: 1rem;
+  padding: 0.7rem 1rem;
+  background: blue;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: blueviolet;
   }
 `;
 

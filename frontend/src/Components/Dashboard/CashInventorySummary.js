@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { dollar } from "../../utils/Icons";
 
 function CashInventorySummary({ denominations }) {
   const calculateTotal = () => {
@@ -21,7 +20,7 @@ function CashInventorySummary({ denominations }) {
             denomination.startsWith("denomination") && (
               <DenominationItem key={denomination}>
                 <div>
-                  <span>Rs. {denomination.slice(12)} Note</span>
+                  <span>Rs. {denomination.slice(12)}</span>
                   <p>
                     Total: ₹
                     {(denominations[denomination] || 0) *
@@ -58,8 +57,8 @@ const CashInventorySummaryStyled = styled.div`
 `;
 
 const DenominationContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
   gap: 1rem;
   margin-top: 2rem;
 `;
@@ -67,7 +66,9 @@ const DenominationContainer = styled.div`
 const DenominationItem = styled.div`
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: center;
+  width: 180px; /* Fixed width */
+  height: 120px; /* Fixed height */
   background: #fcf6f9;
   border: 2px solid #ffffff;
   box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -76,16 +77,18 @@ const DenominationItem = styled.div`
   div {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 0.5rem;
+    text-align: center; 
   }
   span {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 1.2rem;
     font-weight: 600;
   }
   p {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 1rem;
     color: rgba(34, 34, 96, 0.9);
   }
 `;

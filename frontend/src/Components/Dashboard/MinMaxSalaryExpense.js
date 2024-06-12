@@ -2,14 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 function MinMaxSalaryExpense({ title, data }) {
+  const formatAmount = (amount) => {
+    return Number.isInteger(amount) ? amount : amount.toFixed(2); // amounts without decimal values will be shown as whole numbers
+  };
+  
+  const minAmount = formatAmount(Math.min(...data.map((item) => item.amount)));
+  const maxAmount = formatAmount(Math.max(...data.map((item) => item.amount)));
+
   return (
     <SalaryExpenseStyled>
       <h2 className="salary-title">
         Min <span>{title === "Salary" ? "Salary" : "Expense"}</span> Max
       </h2>
       <div className="salary-item">
-        <p>${Math.min(...data.map((item) => item.amount))}</p>
-        <p>${Math.max(...data.map((item) => item.amount))}</p>
+        <p>₹{minAmount}</p>
+        <p>₹{maxAmount}</p>
       </div>
     </SalaryExpenseStyled>
   );
