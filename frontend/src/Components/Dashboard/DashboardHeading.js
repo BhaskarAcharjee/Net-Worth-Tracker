@@ -91,7 +91,7 @@ const DashboardHeadingStyled = styled.div`
       text-align: center;
 
       p {
-        font-size: 4.5rem;
+        font-size: 2rem;
         font-weight: 700;
       }
     }
@@ -99,7 +99,7 @@ const DashboardHeadingStyled = styled.div`
     .balance {
       p {
         opacity: 0.6;
-        font-size: 4.5rem;
+        font-size: 2rem;
       }
 
       .positive {

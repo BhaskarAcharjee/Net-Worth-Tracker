@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import coverImage from "../Images/coverimage2.jpg";
+import coverImage from "../Images/coverimage2.jpg"; // Adjust the path to your image
 import LoginPage from "./LoginPage";
 
 const ForgotPasswordPage = ({ setPasswordCorrect }) => {
@@ -23,42 +23,47 @@ const ForgotPasswordPage = ({ setPasswordCorrect }) => {
   };
 
   return (
-    <ForgotPasswordPageContainer>
-      <CoverImage src={coverImage} alt="Cover" />
-      <ForgotPasswordFormContainer>
-        {!signIn ? (
-          <ForgotPasswordForm>
-            <h2>Forgot Password</h2>
-            <p>Enter your email to reset your password</p>
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-            />
-            <button onClick={handleResetPassword}>Reset Password</button>
-            {successMessage && <SuccessText>{successMessage}</SuccessText>}
-            {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
-            <SignInLink>
-              Remember your password?{" "}
-              <a onClick={() => setSignIn(true)}>Sign in here</a>
-            </SignInLink>
-          </ForgotPasswordForm>
-        ) : (
-          <LoginPage setPasswordCorrect={setPasswordCorrect} />
-        )}
-      </ForgotPasswordFormContainer>
-    </ForgotPasswordPageContainer>
+    <>
+      {!signIn ? (
+        <ForgotPasswordPageContainer>
+          <CoverImage src={coverImage} alt="Cover" />
+          <ForgotPasswordFormContainer>
+            <ForgotPasswordForm>
+              <h2>Forgot Password ?</h2>
+              <p>Enter your email to reset your password</p>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={handleEmailChange}
+                required
+              />
+              <button onClick={handleResetPassword}>Reset Password</button>
+              {successMessage && <SuccessText>{successMessage}</SuccessText>}
+              {errorMessage && <ErrorText>{errorMessage}</ErrorText>}
+              <SignInLink>
+                Remember your password?{" "}
+                <a onClick={() => setSignIn(true)}>Sign in here</a>
+              </SignInLink>
+            </ForgotPasswordForm>
+          </ForgotPasswordFormContainer>
+        </ForgotPasswordPageContainer>
+      ) : (
+        <LoginPage setPasswordCorrect={setPasswordCorrect} />
+      )}
+    </>
   );
 };
 
 const ForgotPasswordPageContainer = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  max-height: 100vh;
 `;
 
 const CoverImage = styled.img`
