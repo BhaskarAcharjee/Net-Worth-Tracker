@@ -9,9 +9,9 @@ function Navigation({ active, setActive, onSignOut }) {
   const [userDetails, setUserDetails] = useState(null);
   const { getUserDetails } = useGlobalContext();
 
-  // const handleProfileClick = () => {
-  //   setActive(10); // Set the active menu item to trigger display of Profile (case:10 in App.js)
-  // };
+  const handleProfileClick = () => {
+    setActive(10); // Set the active menu item to trigger display of Profile [NameModal] (case:10 in App.js)
+  };
 
   const handleSignOut = () => {
     onSignOut(); // Call the onSignOut function from props
@@ -33,13 +33,11 @@ function Navigation({ active, setActive, onSignOut }) {
 
   return (
     <NavStyled>
-      <div className="user-con" 
-      // onClick={handleProfileClick}
-      >
+      <div className="user-con" onClick={handleProfileClick}>
         <img src={avatar} alt="" />
         <div className="text">
+          <p>Welcome,</p>
           <h2>{userDetails?.firstName}</h2>
-          <p>Finance Tracker</p>
         </div>
       </div>
       <ul className="menu-items">

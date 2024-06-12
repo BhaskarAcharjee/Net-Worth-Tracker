@@ -16,6 +16,7 @@ import Liabilities from "./Pages/Liabilities";
 import InvestmentTrading from "./Pages/InvestmentTrading";
 import DebtsLends from "./Pages/DebtsLends";
 import LoginPage from "./Pages/LoginPage";
+import NameModal from "./Components/Profile/NameModal";
 
 function App() {
   const [active, setActive] = useState(1);
@@ -51,7 +52,7 @@ function App() {
         case 9:
           return <Analytics />;
         case 10:
-          return <Profile />;
+          return <NameModal />;
         default:
           return <Dashboard />;
       }
