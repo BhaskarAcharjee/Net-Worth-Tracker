@@ -1,12 +1,8 @@
-# Net Worth Tracker
+# CapitalClarity
 
-The **Net Worth Tracker** is a user-friendly web application designed to help individuals monitor and manage their financial net worth effectively. By allowing users to record their income and expenses, this application enables them to gain insights into their financial health and make informed decisions. Whether you are focused on personal finance management or seeking an overview of your financial progress, the Net Worth Tracker can be an essential tool in achieving your financial goals.
+**CapitalClarity** is a user-friendly web application designed to help individuals monitor and manage their financial net worth effectively. By allowing users to record their income and expenses, this application enables them to gain insights into their financial health and make informed decisions. Whether you are focused on personal finance management or seeking an overview of your financial progress, the Net Worth Tracker can be an essential tool in achieving your financial goals.
 
-**Live Website:** [Net Worth Tracker](https://net-worth-tracker.netlify.app/)
-
-## Compatibility
-
-Please note that this project is optimized for desktop viewing only. It may not provide an optimal experience on mobile devices.
+**Live Website:** [CapitalClarity](https://capitalclarity.vercel.app/)
 
 ## Screenshots
 ![Screenshot (303)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/143e4e48-154f-47cd-9936-dba8940c874b)
@@ -16,6 +12,10 @@ Please note that this project is optimized for desktop viewing only. It may not 
 ![Screenshot (307)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/15e5f532-3521-4bfc-a858-149d56dfcf46)
 ![Screenshot (308)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/972bc3a1-e226-4290-9f6a-f884d611aefe)
 ![Screenshot (309)](https://github.com/BhaskarAcharjee/Net-Worth-Tracker/assets/76872572/4c99aee1-2371-4825-89b4-51b8fb8b7b45)
+
+## Compatibility
+
+Please note that this project is optimized for desktop viewing only. It may not provide an optimal experience on mobile devices.
 
 ## Features
 
@@ -44,7 +44,7 @@ Please note that this project is optimized for desktop viewing only. It may not 
 - **Backend:** Node.js
 - **Database:** MongoDB
 - **Data Visualization:** Chart.js
-- **Security:** Encryption, Authentication, Authorization (to be implemented)
+- **Security:** Encryption, Authentication, Authorization
 
 ## Getting Started
 
